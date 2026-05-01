@@ -1,0 +1,20 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# Editor temp files
+*.swp
+*.bak
+.vscode/
+.idea/
+
+# Local archives / drafts
+*.zip
+data.json.bak
+data-*.json
+
+# Local-only staging for weekly drops — never pushed
+inputs/
+archive/
