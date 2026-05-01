@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STH Piling — Live Jobs</title>
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2E3038">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="STH Live">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #2E3038;
+    --charcoal-2: #3a3d47;
+    --charcoal-3: #494d59;
+    --yellow: #F5C800;
+    --yellow-dim: #c9a300;
+    --bg: #1a1c22;
+    --panel: #23262e;
+    --panel-2: #2a2d36;
+    --line: #3a3d47;
+    --text: #e8e9ec;
+    --text-dim: #9ea2ad;
+    --text-faint: #6b6f7a;
+    --good: #4ade80;
+    --warn: #fbbf24;
+    --bad: #f87171;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Archivo', sans-serif;
+    height: 100%;
+    overflow: hidden;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(245,200,0,0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 100%, rgba(245,200,0,0.03) 0%, transparent 40%),
+      var(--bg);
+  }
+
+  header {
+    background: var(--charcoal);
+    border-bottom: 3px solid var(--yellow);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .logo-mark {
+    width: 44px; height: 44px;
+    background: var(--yellow); color: var(--charcoal);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 18px; letter-spacing: -0.5px;
+    transform: skewX(-8deg);
+  }
+  .logo-mark span { transform: skewX(8deg); }
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-text .title { font-weight: 900; font-size: 22px; letter-spacing: 1px; line-height: 1; }
+  .brand-text .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--yellow);
+    letter-spacing: 3px; margin-top: 4px; text-transform: uppercase;
+  }
+  .header-meta { display: flex; gap: 32px; align-items: center; }
+  .meta-block { text-align: right; }
+  .meta-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-faint);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .meta-block .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700; font-size: 18px;
+    color: var(--yellow); margin-top: 2px;
+  }
+  .install-btn {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    background: var(--yellow);
+    color: var(--charcoal);
+    border: none;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .install-btn:hover { background: var(--yellow-dim); }
+  .install-btn.show { display: flex; }
+
+  .live-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(74, 222, 128, 0.12);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; color: var(--good);
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--good);
+    box-shadow: 0 0 12px var(--good);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .summary-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    background: var(--charcoal);
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  .summary-tile {
+    padding: 18px 20px 16px;
+    border-right: 1px solid var(--charcoal-3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+  .summary-tile:last-child { border-right: none; }
+  .summary-tile::before {
+    content: '';
+    position: absolute; left: 0; top: 0;
+    width: 3px; height: 100%;
+    background: var(--yellow);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .summary-tile:hover::before { opacity: 1; }
+  .summary-tile .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-faint); text-transform: uppercase;
+  }
+  .summary-tile .value {
+    font-weight: 900; font-size: 40px; line-height: 1;
+    letter-spacing: -1.5px;
+    color: var(--yellow);
+    margin-top: 4px;
+  }
+  .summary-tile .value .unit {
+    font-size: 14px; color: var(--text-dim);
+    font-weight: 500; margin-left: 5px;
+  }
+  .summary-tile .boq {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--text-dim);
+    margin-top: 6px; letter-spacing: 1px;
+  }
+
+  /* HALF-CIRCLE GAUGE */
+  .gauge {
+    position: relative;
+    display: inline-block;
+  }
+  .gauge svg {
+    display: block;
+    overflow: visible;
+  }
+  .gauge .track {
+    fill: none;
+    stroke: var(--charcoal-3);
+    stroke-linecap: butt;
+  }
+  .gauge .fill {
+    fill: none;
+    stroke: var(--good);
+    stroke-linecap: butt;
+    transition: stroke-dasharray 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s;
+  }
+  .gauge .fill.warn { stroke: var(--warn); }
+  .gauge .fill.good { stroke: var(--good); }
+  .gauge .fill.bad  { stroke: var(--bad); }
+  .gauge .pct-text {
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1;
+    text-align: center;
+  }
+  .gauge.lg { width: 88px; height: 50px; }
+  .gauge.lg .pct-text { font-size: 20px; }
+  .gauge.sm { width: 78px; height: 44px; }
+  .gauge.sm .pct-text { font-size: 14px; }
+
+  main {
+    flex: 1;
+    overflow: hidden;
+    padding: 20px 28px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+  .jobs-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to bottom, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 24px, black calc(100% - 24px), transparent 100%);
+  }
+  .jobs-scroller {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    will-change: transform;
+  }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-title .bar { width: 4px; height: 22px; background: var(--yellow); }
+  .section-title h2 {
+    font-weight: 900; font-size: 16px;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .section-title .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-faint);
+    letter-spacing: 2px; margin-left: auto;
+  }
+
+  .jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 16px;
+  }
+  /* The clone grid needs the same gap below the original to keep loop seamless */
+  .jobs-grid-clone-spacer {
+    height: 16px;
+  }
+  .job-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .job-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+  }
+  .job-card.idle { opacity: 0.65; }
+  .job-card.idle:hover { opacity: 1; }
+
+  .job-header {
+    padding: 14px 18px;
+    background: var(--charcoal);
+    border-bottom: 2px solid var(--yellow);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .job-header .left .job-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--yellow);
+    letter-spacing: 2px; font-weight: 700;
+  }
+  .job-header .left .job-name {
+    font-weight: 900; font-size: 17px;
+    line-height: 1.2; margin-top: 4px;
+    letter-spacing: -0.3px;
+  }
+  .job-header .left .job-client {
+    font-size: 12px; color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .status-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; padding: 4px 10px;
+    text-transform: uppercase; flex-shrink: 0;
+  }
+  .status-active { background: var(--yellow); color: var(--charcoal); }
+  .status-idle   { background: var(--charcoal-3); color: var(--text-dim); }
+  .status-complete {
+    background: rgba(74, 222, 128, 0.2);
+    color: var(--good);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+  }
+
+  .job-body {
+    padding: 20px 14px 16px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .material-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 2px;
+    border-right: 1px dashed var(--line);
+  }
+  .material-cell:last-child { border-right: none; }
+  .material-cell .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .material-cell .gauge.sm { width: 70px; height: 40px; }
+  .material-cell .gauge.sm .pct-text { font-size: 13px; }
+  .material-cell .nums {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .material-cell .nums .actual {
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .material-cell .nums .unit-txt {
+    color: var(--text-faint);
+  }
+  .material-cell .nums .boq-line {
+    color: var(--text-faint);
+    font-size: 10px;
+  }
+
+  .job-footer {
+    padding: 10px 18px;
+    background: var(--panel-2);
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .job-footer .label { color: var(--text-faint); letter-spacing: 1px; text-transform: uppercase; font-size: 10px; }
+  .job-footer .val { color: var(--text); margin-left: 6px; }
+
+  main::-webkit-scrollbar { width: 8px; }
+  main::-webkit-scrollbar-track { background: var(--bg); }
+  main::-webkit-scrollbar-thumb { background: var(--charcoal-3); }
+  main::-webkit-scrollbar-thumb:hover { background: var(--yellow-dim); }
+
+  .ticker {
+    background: var(--charcoal);
+    border-top: 1px solid var(--line);
+    padding: 8px 0;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .ticker-inner {
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: scroll 60s linear infinite;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .ticker-item { display: flex; align-items: center; gap: 8px; }
+  .ticker-item .arrow { color: var(--yellow); font-weight: 700; }
+  .ticker-item .label { color: var(--text-faint); }
+  .ticker-item .value { color: var(--text); font-weight: 700; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-mark"><span>STH</span></div>
+    <div class="brand-text">
+      <div class="title">STH PILING</div>
+      <div class="sub">Live Operations / Material Tracking</div>
+    </div>
+  </div>
+  <div class="header-meta">
+    <div class="meta-block">
+      <div class="label">Date</div>
+      <div class="value" id="date">—</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Time</div>
+      <div class="value" id="time">—</div>
+    </div>
+    <button class="install-btn" id="install-btn" type="button">
+      <span>⬇ Install</span>
+    </button>
+    <div class="live-pill">
+      <div class="live-dot"></div>
+      <span>LIVE</span>
+    </div>
+  </div>
+</header>
+
+<div class="summary-strip" id="summary-strip"></div>
+
+<main>
+  <div class="section-title">
+    <div class="bar"></div>
+    <h2>Active Jobs</h2>
+    <div class="count" id="job-count">— Jobs</div>
+  </div>
+  <div class="jobs-viewport" id="jobs-viewport">
+    <div class="jobs-scroller" id="jobs-scroller">
+      <div class="jobs-grid" id="jobs-grid"></div>
+      <div class="jobs-grid" id="jobs-grid-clone" aria-hidden="true"></div>
+    </div>
+  </div>
+</main>
+
+<div class="ticker">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<script>
+  let MATERIALS = [];
+  let JOBS = [];
+  let LAST_UPDATED = null;
+
+  function fmt(n) { return n.toLocaleString('en-AU', { maximumFractionDigits: 0 }); }
+  function pctClamped(a, b) { return b > 0 ? Math.min(100, (a / b) * 100) : 0; }
+  function pctClass(p) {
+    if (p > 100) return 'bad';   // over BOQ → red
+    if (p >= 85) return 'warn';  // getting close → yellow
+    return 'good';               // on track → green
+  }
+
+  // Build a half-circle gauge (top half of a circle).
+  // Arc starts at left baseline, sweeps over the top, ends at right baseline.
+  function gauge(percent, size) {
+    const isLg = size === 'lg';
+    const w = isLg ? 88 : 78;
+    const h = isLg ? 50 : 44;
+    const stroke = isLg ? 9 : 8;
+    const cx = w / 2;
+    const cy = h - 4;                     // baseline
+    const r  = (w / 2) - (stroke / 2) - 2;
+    const pathD = `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`;
+    const arcLen = Math.PI * r;
+    const fillLen = (Math.min(100, percent) / 100) * arcLen;
+    const cls = pctClass(percent);
+    return `
+      <div class="gauge ${size}">
+        <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+          <path class="track" d="${pathD}" stroke-width="${stroke}"/>
+          <path class="fill ${cls}" d="${pathD}" stroke-width="${stroke}"
+                stroke-dasharray="${fillLen} ${arcLen}"/>
+        </svg>
+        <div class="pct-text">${Math.round(percent)}%</div>
+      </div>
+    `;
+  }
+
+  function renderSummary() {
+    const totals = {};
+    MATERIALS.forEach(m => totals[m.key] = { week: 0, actual: 0, boq: 0 });
+    JOBS.forEach(j => {
+      MATERIALS.forEach(m => {
+        totals[m.key].week += j.materials[m.key].week;
+        totals[m.key].actual += j.materials[m.key].actual;
+        totals[m.key].boq += j.materials[m.key].boq;
+      });
+    });
+    document.getElementById('summary-strip').innerHTML = MATERIALS.map(m => {
+      const t = totals[m.key];
+      return `
+        <div class="summary-tile">
+          <div class="label">${m.label} — This Week</div>
+          <div class="value">${fmt(t.week)}<span class="unit">${m.unit}</span></div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderJobs() {
+    document.getElementById('job-count').textContent = `${JOBS.length} JOBS`;
+    const cardsHtml = JOBS.map(j => {
+      const statusClass = j.status === 'active' ? 'status-active' : j.status === 'idle' ? 'status-idle' : 'status-complete';
+      const cardClass = j.status === 'idle' ? 'job-card idle' : 'job-card';
+      const cells = MATERIALS.map(m => {
+        const d = j.materials[m.key];
+        const p = pctClamped(d.actual, d.boq);
+        return `
+          <div class="material-cell">
+            <div class="name">${m.label}</div>
+            ${gauge(p, 'sm')}
+            <div class="nums">
+              <div><span class="actual">${fmt(d.actual)}</span> <span class="unit-txt">${m.unit}</span></div>
+              <div class="boq-line">/ ${fmt(d.boq)}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      return `
+        <div class="${cardClass}">
+          <div class="job-header">
+            <div class="left">
+              <div class="job-id">JOB ${j.id}</div>
+              <div class="job-name">${j.name}</div>
+              <div class="job-client">${j.client}</div>
+            </div>
+            <div class="status-badge ${statusClass}">${j.status}</div>
+          </div>
+          <div class="job-body">${cells}</div>
+          <div class="job-footer">
+            <div><span class="label">SUPERVISOR</span><span class="val">${j.supervisor}</span></div>
+            <div><span class="label">START</span><span class="val">${j.startDate}</span></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    document.getElementById('jobs-grid').innerHTML = cardsHtml;
+    document.getElementById('jobs-grid-clone').innerHTML = cardsHtml;
+  }
+
+  // Auto-scroll the jobs viewport. Loops seamlessly using a duplicated grid.
+  function startAutoScroll() {
+    const viewport = document.getElementById('jobs-viewport');
+    const scroller = document.getElementById('jobs-scroller');
+    const firstGrid = document.getElementById('jobs-grid');
+    let offset = 0;
+    let paused = false;
+    const SPEED = 0.15; // pixels per frame (~9px/sec at 60fps - very slow read pace)
+    const GAP = 16;    // matches CSS gap on .jobs-scroller
+
+    viewport.addEventListener('mouseenter', () => paused = true);
+    viewport.addEventListener('mouseleave', () => paused = false);
+
+    function step() {
+      const firstGridHeight = firstGrid.offsetHeight;
+      // Always scroll — even if all jobs fit, we still want them to rotate through.
+      // Only skip if the grid hasn't rendered yet.
+      if (firstGridHeight < 10) {
+        requestAnimationFrame(step);
+        return;
+      }
+      if (!paused) {
+        offset += SPEED;
+        // Reset once we've scrolled past the first grid (plus the gap to clone)
+        if (offset >= firstGridHeight + GAP) {
+          offset = 0;
+        }
+        scroller.style.transform = `translateY(${-offset}px)`;
+      }
+      requestAnimationFrame(step);
+    }
+    // Wait one frame so layout has settled before measuring
+    requestAnimationFrame(() => requestAnimationFrame(step));
+  }
+
+  function renderTicker() {
+    const items = [];
+    JOBS.forEach(j => {
+      MATERIALS.forEach(m => {
+        const d = j.materials[m.key];
+        const p = pctClamped(d.actual, d.boq);
+        items.push(`
+          <div class="ticker-item">
+            <span class="arrow">▸</span>
+            <span class="label">JOB ${j.id} ${m.label.toUpperCase()}</span>
+            <span class="value">${fmt(d.actual)}/${fmt(d.boq)} ${m.unit}</span>
+            <span class="label">(${p.toFixed(0)}%)</span>
+          </div>
+        `);
+      });
+    });
+    document.getElementById('ticker').innerHTML = (items.join('') + items.join(''));
+  }
+
+  function tickClock() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-AU', { weekday: 'short', day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+    const timeStr = now.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+    document.getElementById('date').textContent = dateStr;
+    document.getElementById('time').textContent = timeStr;
+  }
+
+  // ============ DATA LOAD ============
+  // Fetches data.json (cache-busted) and re-renders. Called on init and every 5 min.
+  async function loadData() {
+    try {
+      const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) throw new Error('fetch failed: ' + res.status);
+      const payload = await res.json();
+      MATERIALS = payload.materials || [];
+      JOBS = payload.jobs || [];
+      LAST_UPDATED = payload.lastUpdated || null;
+      renderSummary();
+      renderJobs();
+      renderTicker();
+    } catch (err) {
+      console.error('Could not load data.json:', err);
+      const grid = document.getElementById('jobs-grid');
+      if (grid && !grid.innerHTML) {
+        grid.innerHTML = '<div style="padding:40px;color:var(--text-dim);text-align:center;">Could not load data.json — check the file is present.</div>';
+      }
+    }
+  }
+
+  // Initial load + render
+  loadData().then(() => {
+    startAutoScroll();
+  });
+
+  // Refresh data every 5 minutes
+  setInterval(loadData, 5 * 60 * 1000);
+
+  tickClock();
+  setInterval(tickClock, 1000);
+
+  // ============ PWA / INSTALL ============
+  // Register the service worker for offline caching.
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('SW registered', reg.scope))
+        .catch(err => console.warn('SW registration failed', err));
+    });
+  }
+
+  // Show the install button when the browser fires beforeinstallprompt.
+  let deferredPrompt = null;
+  const installBtn = document.getElementById('install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.classList.add('show');
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log(`Install prompt: ${outcome}`);
+    deferredPrompt = null;
+    installBtn.classList.remove('show');
+  });
+
+  // Hide the button once the app is actually installed.
+  window.addEventListener('appinstalled', () => {
+    installBtn.classList.remove('show');
+    deferredPrompt = null;
+  });
+</script>
+
+</body>
+</html>
