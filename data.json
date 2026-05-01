@@ -2,84 +2,236 @@
   "lastUpdated": "2026-05-02T00:00:00+10:00",
   "weekEnding": "2026-05-02",
   "materials": [
-    { "key": "labour",       "label": "Labour",    "unit": "hrs" },
-    { "key": "soil",         "label": "Soil",      "unit": "m\u00b3" },
-    { "key": "concrete",     "label": "Concrete",  "unit": "m\u00b3" },
-    { "key": "pilesDrilled", "label": "Piles",     "unit": "ea" },
-    { "key": "lmDrilled",    "label": "LM",        "unit": "lm" },
-    { "key": "shotcrete",    "label": "Shotcrete", "unit": "m\u00b2" }
+    {
+      "key": "labour",
+      "label": "Labour",
+      "unit": "hrs"
+    },
+    {
+      "key": "soil",
+      "label": "Soil",
+      "unit": "m³"
+    },
+    {
+      "key": "concrete",
+      "label": "Concrete",
+      "unit": "m³"
+    },
+    {
+      "key": "pilesDrilled",
+      "label": "Piles",
+      "unit": "ea"
+    },
+    {
+      "key": "lmDrilled",
+      "label": "LM",
+      "unit": "lm"
+    },
+    {
+      "key": "shotcrete",
+      "label": "Shotcrete",
+      "unit": "m²"
+    }
   ],
   "jobs": [
     {
-      "id": "1309", "name": "44 Scott Grove", "client": "AG Construct", "status": "active",
-      "supervisor": "Danny Brady", "startDate": "14 Apr 2026",
+      "id": "TBD",
+      "name": "Pakenham",
+      "client": "TBD",
+      "status": "active",
+      "supervisor": "TBD",
+      "startDate": "TBD",
       "materials": {
-        "labour":       { "actual": 412,  "boq": 580,  "week": 78 },
-        "soil":         { "actual": 1240, "boq": 1680, "week": 240 },
-        "concrete":     { "actual": 218,  "boq": 295,  "week": 42 },
-        "pilesDrilled": { "actual": 64,   "boq": 88,   "week": 12 },
-        "lmDrilled":    { "actual": 612,  "boq": 845,  "week": 118 },
-        "shotcrete":    { "actual": 285,  "boq": 420,  "week": 62 }
+        "labour": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
       }
     },
     {
-      "id": "1342", "name": "Playne St Frankston", "client": "Hamilton Marino", "status": "active",
-      "supervisor": "Jake Morrison", "startDate": "02 Mar 2026",
+      "id": "TBD",
+      "name": "Napier St",
+      "client": "TBD",
+      "status": "active",
+      "supervisor": "TBD",
+      "startDate": "TBD",
       "materials": {
-        "labour":       { "actual": 720,  "boq": 820,  "week": 95 },
-        "soil":         { "actual": 2340, "boq": 2580, "week": 285 },
-        "concrete":     { "actual": 388,  "boq": 425,  "week": 48 },
-        "pilesDrilled": { "actual": 112,  "boq": 124,  "week": 14 },
-        "lmDrilled":    { "actual": 1180, "boq": 1320, "week": 152 },
-        "shotcrete":    { "actual": 540,  "boq": 620,  "week": 88 }
+        "labour": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
       }
     },
     {
-      "id": "1356", "name": "Lower Heidelberg Rd Ivanhoe", "client": "Built Form", "status": "active",
-      "supervisor": "Edward Pearce", "startDate": "08 Apr 2026",
+      "id": "TBD",
+      "name": "Spotswood",
+      "client": "TBD",
+      "status": "active",
+      "supervisor": "TBD",
+      "startDate": "TBD",
       "materials": {
-        "labour":       { "actual": 184,  "boq": 640,  "week": 88 },
-        "soil":         { "actual": 480,  "boq": 1840, "week": 220 },
-        "concrete":     { "actual": 92,   "boq": 312,  "week": 38 },
-        "pilesDrilled": { "actual": 28,   "boq": 96,   "week": 11 },
-        "lmDrilled":    { "actual": 245,  "boq": 920,  "week": 105 },
-        "shotcrete":    { "actual": 0,    "boq": 380,  "week": 0 }
+        "labour": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
       }
     },
     {
-      "id": "1371", "name": "4 Nareeb Court Toorak", "client": "Cobild", "status": "active",
-      "supervisor": "Logan", "startDate": "21 Apr 2026",
+      "id": "TBD",
+      "name": "Albert Rd",
+      "client": "TBD",
+      "status": "active",
+      "supervisor": "TBD",
+      "startDate": "TBD",
       "materials": {
-        "labour":       { "actual": 96,   "boq": 720,  "week": 96 },
-        "soil":         { "actual": 220,  "boq": 2100, "week": 220 },
-        "concrete":     { "actual": 38,   "boq": 358,  "week": 38 },
-        "pilesDrilled": { "actual": 12,   "boq": 104,  "week": 12 },
-        "lmDrilled":    { "actual": 98,   "boq": 1045, "week": 98 },
-        "shotcrete":    { "actual": 0,    "boq": 485,  "week": 0 }
+        "labour": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
       }
     },
     {
-      "id": "1368", "name": "Andersons Creek Doncaster East", "client": "Mainbrace", "status": "idle",
-      "supervisor": "Danny Brady", "startDate": "10 Mar 2026",
+      "id": "TBD",
+      "name": "Middle Park",
+      "client": "TBD",
+      "status": "active",
+      "supervisor": "TBD",
+      "startDate": "TBD",
       "materials": {
-        "labour":       { "actual": 540,  "boq": 560,  "week": 0 },
-        "soil":         { "actual": 1820, "boq": 1880, "week": 0 },
-        "concrete":     { "actual": 282,  "boq": 298,  "week": 0 },
-        "pilesDrilled": { "actual": 78,   "boq": 82,   "week": 0 },
-        "lmDrilled":    { "actual": 825,  "boq": 870,  "week": 0 },
-        "shotcrete":    { "actual": 395,  "boq": 410,  "week": 0 }
-      }
-    },
-    {
-      "id": "1382", "name": "36 Male St Brighton", "client": "L.U. Simon", "status": "active",
-      "supervisor": "Jake Morrison", "startDate": "24 Apr 2026",
-      "materials": {
-        "labour":       { "actual": 48,   "boq": 480,  "week": 48 },
-        "soil":         { "actual": 110,  "boq": 1420, "week": 110 },
-        "concrete":     { "actual": 18,   "boq": 245,  "week": 18 },
-        "pilesDrilled": { "actual": 6,    "boq": 72,   "week": 6 },
-        "lmDrilled":    { "actual": 52,   "boq": 680,  "week": 52 },
-        "shotcrete":    { "actual": 0,    "boq": 320,  "week": 0 }
+        "labour": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
       }
     }
   ]
