@@ -1,11 +1,11 @@
 {
-  "lastUpdated": "2026-05-02T00:00:00+10:00",
+  "lastUpdated": "2026-05-02T15:30:00+10:00",
   "weekEnding": "2026-05-02",
   "materials": [
     {
       "key": "labour",
       "label": "Labour",
-      "unit": "hrs"
+      "unit": "days"
     },
     {
       "key": "soil",
@@ -36,35 +36,35 @@
   "jobs": [
     {
       "id": "TBD",
-      "name": "Pakenham",
-      "client": "TBD",
+      "name": "7-9 Bald Hill Rd Pakenham",
+      "client": "OneSq",
       "status": "active",
-      "supervisor": "TBD",
-      "startDate": "TBD",
+      "supervisor": "Will",
+      "startDate": "23 Apr 2026",
       "materials": {
         "labour": {
           "actual": 0,
-          "boq": 0,
+          "boq": 30,
           "week": 0
         },
         "soil": {
           "actual": 0,
-          "boq": 0,
+          "boq": 870,
           "week": 0
         },
         "concrete": {
           "actual": 0,
-          "boq": 0,
+          "boq": 1131,
           "week": 0
         },
         "pilesDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 192,
           "week": 0
         },
         "lmDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 2405,
           "week": 0
         },
         "shotcrete": {
@@ -76,15 +76,55 @@
     },
     {
       "id": "TBD",
-      "name": "Napier St",
-      "client": "TBD",
+      "name": "235 Napier St Fitzroy",
+      "client": "AG Construct",
       "status": "active",
-      "supervisor": "TBD",
-      "startDate": "TBD",
+      "supervisor": "Danny B / Henry",
+      "startDate": "24 Apr 2026",
       "materials": {
         "labour": {
           "actual": 0,
-          "boq": 0,
+          "boq": 5,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 4311,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 60,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 36,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 325,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 126,
+          "week": 0
+        }
+      }
+    },
+    {
+      "id": "TBD",
+      "name": "637 Melbourne Rd Spotswood",
+      "client": "LEDM",
+      "status": "active",
+      "supervisor": "JD",
+      "startDate": "24 Apr 2026",
+      "materials": {
+        "labour": {
+          "actual": 0,
+          "boq": 26,
           "week": 0
         },
         "soil": {
@@ -94,17 +134,17 @@
         },
         "concrete": {
           "actual": 0,
-          "boq": 0,
+          "boq": 99,
           "week": 0
         },
         "pilesDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 77,
           "week": 0
         },
         "lmDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 373,
           "week": 0
         },
         "shotcrete": {
@@ -116,15 +156,15 @@
     },
     {
       "id": "TBD",
-      "name": "Spotswood",
-      "client": "TBD",
+      "name": "427 Albert St Brunswick",
+      "client": "Markscon",
       "status": "active",
-      "supervisor": "TBD",
-      "startDate": "TBD",
+      "supervisor": "TBC",
+      "startDate": "06 May 2026",
       "materials": {
         "labour": {
           "actual": 0,
-          "boq": 0,
+          "boq": 14,
           "week": 0
         },
         "soil": {
@@ -134,17 +174,17 @@
         },
         "concrete": {
           "actual": 0,
-          "boq": 0,
+          "boq": 364,
           "week": 0
         },
         "pilesDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 96,
           "week": 0
         },
         "lmDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 1220,
           "week": 0
         },
         "shotcrete": {
@@ -156,15 +196,15 @@
     },
     {
       "id": "TBD",
-      "name": "Albert Rd",
-      "client": "TBD",
+      "name": "44 St Vincent Pl N Albert Park",
+      "client": "W. Build",
       "status": "active",
-      "supervisor": "TBD",
-      "startDate": "TBD",
+      "supervisor": "TBC",
+      "startDate": "07 May 2026",
       "materials": {
         "labour": {
           "actual": 0,
-          "boq": 0,
+          "boq": 5,
           "week": 0
         },
         "soil": {
@@ -174,57 +214,17 @@
         },
         "concrete": {
           "actual": 0,
-          "boq": 0,
+          "boq": 62,
           "week": 0
         },
         "pilesDrilled": {
           "actual": 0,
-          "boq": 0,
+          "boq": 50,
           "week": 0
         },
         "lmDrilled": {
           "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "shotcrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        }
-      }
-    },
-    {
-      "id": "TBD",
-      "name": "Middle Park",
-      "client": "TBD",
-      "status": "active",
-      "supervisor": "TBD",
-      "startDate": "TBD",
-      "materials": {
-        "labour": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "soil": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "concrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "pilesDrilled": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "lmDrilled": {
-          "actual": 0,
-          "boq": 0,
+          "boq": 302,
           "week": 0
         },
         "shotcrete": {
