@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-05-02T15:30:00+10:00",
-  "weekEnding": "2026-05-02",
+  "lastUpdated": "2026-05-07T15:07:31+10:00",
+  "weekEnding": "2026-05-07",
   "materials": [
     {
       "key": "labour",
@@ -43,9 +43,9 @@
       "startDate": "23 Apr 2026",
       "materials": {
         "labour": {
-          "actual": 0,
+          "actual": 11,
           "boq": 30,
-          "week": 0
+          "week": 4
         },
         "soil": {
           "actual": 0,
@@ -53,14 +53,14 @@
           "week": 0
         },
         "concrete": {
-          "actual": 0,
+          "actual": 197,
           "boq": 1131,
           "week": 0
         },
         "pilesDrilled": {
-          "actual": 0,
+          "actual": 149,
           "boq": 192,
-          "week": 0
+          "week": 42
         },
         "lmDrilled": {
           "actual": 0,
@@ -83,9 +83,9 @@
       "startDate": "24 Apr 2026",
       "materials": {
         "labour": {
-          "actual": 0,
+          "actual": 10,
           "boq": 5,
-          "week": 0
+          "week": 3
         },
         "soil": {
           "actual": 0,
@@ -93,14 +93,14 @@
           "week": 0
         },
         "concrete": {
-          "actual": 0,
+          "actual": 72,
           "boq": 60,
-          "week": 0
+          "week": 1
         },
         "pilesDrilled": {
-          "actual": 0,
+          "actual": 42,
           "boq": 36,
-          "week": 0
+          "week": 11
         },
         "lmDrilled": {
           "actual": 0,
@@ -123,9 +123,9 @@
       "startDate": "24 Apr 2026",
       "materials": {
         "labour": {
-          "actual": 0,
+          "actual": 11,
           "boq": 26,
-          "week": 0
+          "week": 4
         },
         "soil": {
           "actual": 0,
@@ -133,14 +133,14 @@
           "week": 0
         },
         "concrete": {
-          "actual": 0,
+          "actual": 28,
           "boq": 99,
-          "week": 0
+          "week": 21
         },
         "pilesDrilled": {
-          "actual": 0,
+          "actual": 42,
           "boq": 77,
-          "week": 0
+          "week": 28
         },
         "lmDrilled": {
           "actual": 0,
@@ -163,9 +163,9 @@
       "startDate": "06 May 2026",
       "materials": {
         "labour": {
-          "actual": 0,
+          "actual": 1,
           "boq": 14,
-          "week": 0
+          "week": 1
         },
         "soil": {
           "actual": 0,
@@ -178,9 +178,9 @@
           "week": 0
         },
         "pilesDrilled": {
-          "actual": 0,
+          "actual": 7,
           "boq": 96,
-          "week": 0
+          "week": 7
         },
         "lmDrilled": {
           "actual": 0,
@@ -203,9 +203,9 @@
       "startDate": "07 May 2026",
       "materials": {
         "labour": {
-          "actual": 0,
+          "actual": 2,
           "boq": 5,
-          "week": 0
+          "week": 2
         },
         "soil": {
           "actual": 0,
