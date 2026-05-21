@@ -919,10 +919,11 @@
         const d = j.materials[m.key];
         const isPace = (m.key === 'pilesDrilled' || m.key === 'lmDrilled');
         const pace = isPace ? paceData(j, m.key) : null;
+        // For piles/LM: fill = % of BOQ done (intuitive), colour = on/behind pace
         let p, gaugeCls;
         if (pace) {
-          p = pace.complete ? 100 : pace.pct;
-          gaugeCls = pctClassPace(p);
+          p = pctClamped(d.actual, d.boq);
+          gaugeCls = pctClassPace(pace.complete ? 100 : pace.pct);
         } else {
           p = pctClamped(d.actual, d.boq);
           gaugeCls = pctClass(p);
@@ -1249,10 +1250,11 @@
       const pace = isPace ? paceData(j, m.key) : null;
       const liveDot = d.live ? '<span class="live-dot" title="Live from Firebase"></span>' : '';
 
+      // For piles/LM: gauge fill = % of BOQ done, gauge colour = pace status
       let p, gaugeCls;
       if (pace) {
-        p = pace.complete ? 100 : pace.pct;
-        gaugeCls = pctClassPace(p);
+        p = pctClamped(d.actual, d.boq);
+        gaugeCls = pctClassPace(pace.complete ? 100 : pace.pct);
       } else {
         p = pctClamped(d.actual, d.boq);
         gaugeCls = pctClass(p);
