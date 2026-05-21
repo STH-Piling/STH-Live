@@ -1140,11 +1140,12 @@
             }
           });
 
-          if (dashJob.materials.pilesDrilled) {
+          // Only override if Firebase has MORE data than data.json — never zero out a good number.
+          if (dashJob.materials.pilesDrilled && donePiles > (dashJob.materials.pilesDrilled.actual || 0)) {
             dashJob.materials.pilesDrilled.actual = donePiles;
             dashJob.materials.pilesDrilled.live = true;
           }
-          if (dashJob.materials.lmDrilled) {
+          if (dashJob.materials.lmDrilled && totalLm > (dashJob.materials.lmDrilled.actual || 0)) {
             dashJob.materials.lmDrilled.actual = Math.round(totalLm);
             dashJob.materials.lmDrilled.live = true;
           }
@@ -1180,15 +1181,17 @@
         }
 
         // Concrete = pile concrete + cartage concrete (combined view of how much concrete went into the job)
+        // Only override if Firebase total is higher than data.json (never go backwards).
         if (dashJob.materials.concrete) {
           const pileC = dashJob._pileConcrete || 0;
-          if (pileC > 0 || cartageConcrete > 0) {
-            dashJob.materials.concrete.actual = Math.round(pileC + cartageConcrete);
+          const fbConcrete = Math.round(pileC + cartageConcrete);
+          if (fbConcrete > (dashJob.materials.concrete.actual || 0)) {
+            dashJob.materials.concrete.actual = fbConcrete;
             dashJob.materials.concrete.live = true;
           }
         }
-        // Soil from cartage only
-        if (dashJob.materials.soil && cartageSoil > 0) {
+        // Soil from cartage only — only override if Firebase has more.
+        if (dashJob.materials.soil && cartageSoil > (dashJob.materials.soil.actual || 0)) {
           dashJob.materials.soil.actual = Math.round(cartageSoil);
           dashJob.materials.soil.live = true;
         }
