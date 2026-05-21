@@ -652,6 +652,20 @@
     color: var(--yellow);
     font-weight: 700;
   }
+  .modal-material-cell .nums .catchup-line {
+    color: var(--bad);
+    font-size: 11px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .modal-material-cell .nums .ahead-line {
+    color: var(--good);
+    font-size: 11px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
   .gauge.xl { width: 180px; height: 100px; }
   .gauge.xl .pct-text { font-size: 36px; bottom: 6px; }
   .modal-footer {
@@ -783,10 +797,49 @@
     if (p >= 85) return 'warn';  // getting close → yellow
     return 'good';               // on track → green
   }
+  // Pace classifier — for piles/LM where >100% means AHEAD of target rate (good).
+  function pctClassPace(p) {
+    if (p >= 100) return 'good';  // on or ahead of per-day target rate
+    if (p >= 85)  return 'warn';  // slipping
+    return 'bad';                 // behind
+  }
+
+  // Per-day pace: compares actual rate (actual/days_worked) to target rate (boq/boq_days).
+  // Returns null if we can't compute (no labour data, zero BOQ, etc.) — caller falls back.
+  function paceData(j, materialKey) {
+    const labour = j.materials.labour;
+    const m = j.materials[materialKey];
+    if (!labour || !m) return null;
+    if (labour.boq <= 0 || labour.actual <= 0 || m.boq <= 0) return null;
+
+    const targetRate   = m.boq / labour.boq;       // e.g. 192 piles / 30 days = 6.4/day
+    const actualRate   = m.actual / labour.actual; // e.g. 149 piles / 11 days = 13.5/day
+    const remaining    = m.boq - m.actual;
+    const remainingDays = labour.boq - labour.actual;
+
+    // Already past BOQ totals → treat as complete (don't penalise on rate)
+    if (remaining <= 0) {
+      return { pct: 100, targetRate, actualRate, remaining: 0, remainingDays,
+               behind: false, complete: true, requiredRate: null, needMoreDays: false };
+    }
+
+    const pct = targetRate > 0 ? (actualRate / targetRate) * 100 : 0;
+    const behind = pct < 100;
+
+    let requiredRate = null;
+    let needMoreDays = false;
+    if (behind) {
+      if (remainingDays > 0) requiredRate = remaining / remainingDays;
+      else                   needMoreDays = true;  // past day budget already
+    }
+
+    return { pct, targetRate, actualRate, remaining, remainingDays,
+             behind, complete: false, requiredRate, needMoreDays };
+  }
 
   // Build a half-circle gauge (top half of a circle).
   // Arc starts at left baseline, sweeps over the top, ends at right baseline.
-  function gauge(percent, size) {
+  function gauge(percent, size, classOverride) {
     const sizes = {
       lg: { w: 88,  h: 50,  stroke: 9,  pad: 4 },
       sm: { w: 78,  h: 44,  stroke: 8,  pad: 4 },
@@ -800,7 +853,7 @@
     const pathD = `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`;
     const arcLen = Math.PI * r;
     const fillLen = (Math.min(100, percent) / 100) * arcLen;
-    const cls = pctClass(percent);
+    const cls = classOverride || pctClass(percent);
     return `
       <div class="gauge ${size}">
         <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
@@ -864,12 +917,21 @@
       const cardClass = j.status === 'idle' ? 'job-card idle' : 'job-card';
       const cells = MATERIALS.map(m => {
         const d = j.materials[m.key];
-        const p = pctClamped(d.actual, d.boq);
+        const isPace = (m.key === 'pilesDrilled' || m.key === 'lmDrilled');
+        const pace = isPace ? paceData(j, m.key) : null;
+        let p, gaugeCls;
+        if (pace) {
+          p = pace.complete ? 100 : pace.pct;
+          gaugeCls = pctClassPace(p);
+        } else {
+          p = pctClamped(d.actual, d.boq);
+          gaugeCls = pctClass(p);
+        }
         const liveDot = d.live ? '<span class="live-dot" title="Live from Firebase"></span>' : '';
         return `
           <div class="material-cell">
             <div class="name">${m.label}${liveDot}</div>
-            ${gauge(p, 'sm')}
+            ${gauge(p, 'sm', gaugeCls)}
             <div class="nums">
               <div><span class="actual">${fmt(d.actual)}</span> <span class="unit-txt">${m.unit}</span></div>
               <div class="boq-line">/ ${fmt(d.boq)}</div>
@@ -1180,16 +1242,61 @@
     // Render xl material cells
     const cells = MATERIALS.map(m => {
       const d = j.materials[m.key];
-      const p = pctClamped(d.actual, d.boq);
+      const isPace = (m.key === 'pilesDrilled' || m.key === 'lmDrilled');
+      const pace = isPace ? paceData(j, m.key) : null;
       const liveDot = d.live ? '<span class="live-dot" title="Live from Firebase"></span>' : '';
+
+      let p, gaugeCls;
+      if (pace) {
+        p = pace.complete ? 100 : pace.pct;
+        gaugeCls = pctClassPace(p);
+      } else {
+        p = pctClamped(d.actual, d.boq);
+        gaugeCls = pctClass(p);
+      }
+
+      // Bottom lines: for pace materials, show actual rate vs target rate + catchup
+      let bottomLines;
+      if (pace) {
+        if (pace.complete) {
+          bottomLines = `
+            <div class="boq-line">${pace.actualRate.toFixed(1)}/day &middot; target ${pace.targetRate.toFixed(1)}/day</div>
+            <div class="ahead-line">BOQ total complete</div>
+            <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+          `;
+        } else if (pace.behind) {
+          let catchup = '';
+          if (pace.needMoreDays) {
+            catchup = `<div class="catchup-line">${fmt(pace.remaining)} ${m.unit} left &mdash; past day budget</div>`;
+          } else if (pace.requiredRate != null) {
+            catchup = `<div class="catchup-line">Need ${pace.requiredRate.toFixed(1)} ${m.unit}/day to hit BOQ</div>`;
+          }
+          bottomLines = `
+            <div class="boq-line">${pace.actualRate.toFixed(1)}/day &middot; target ${pace.targetRate.toFixed(1)}/day</div>
+            ${catchup}
+            <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+          `;
+        } else {
+          bottomLines = `
+            <div class="boq-line">${pace.actualRate.toFixed(1)}/day &middot; target ${pace.targetRate.toFixed(1)}/day</div>
+            <div class="ahead-line">${Math.round(pace.pct - 100)}% ahead of pace</div>
+            <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+          `;
+        }
+      } else {
+        bottomLines = `
+          <div class="boq-line">BOQ target</div>
+          <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+        `;
+      }
+
       return `
         <div class="modal-material-cell">
           <div class="name">${m.label}${liveDot}</div>
-          ${gauge(p, 'xl')}
+          ${gauge(p, 'xl', gaugeCls)}
           <div class="nums">
             <div><span class="actual">${fmt(d.actual)} of ${fmt(d.boq)}</span> <span class="unit-txt">${m.unit}</span></div>
-            <div class="boq-line">BOQ target</div>
-            <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+            ${bottomLines}
           </div>
         </div>
       `;
@@ -1230,14 +1337,13 @@
 
   modalClose.addEventListener('click', closeJobModal);
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeJobModal();   // click backdrop to close
+    if (e.target === modal) closeJobModal();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modalOpen) closeJobModal();
   });
 
   // ============ PWA / INSTALL ============
-  // Register the service worker for offline caching.
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('sw.js')
@@ -1246,7 +1352,6 @@
     });
   }
 
-  // Show the install button when the browser fires beforeinstallprompt.
   let deferredPrompt = null;
   const installBtn = document.getElementById('install-btn');
 
@@ -1265,7 +1370,6 @@
     installBtn.classList.remove('show');
   });
 
-  // Hide the button once the app is actually installed.
   window.addEventListener('appinstalled', () => {
     installBtn.classList.remove('show');
     deferredPrompt = null;
