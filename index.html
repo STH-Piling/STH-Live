@@ -627,8 +627,9 @@
   }
   .modal-material-cell .nums .actual {
     color: var(--yellow);
-    font-weight: 700;
-    font-size: 26px;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.5px;
   }
   .modal-material-cell .nums .unit-txt {
     color: var(--text-faint);
@@ -1186,8 +1187,8 @@
           <div class="name">${m.label}${liveDot}</div>
           ${gauge(p, 'xl')}
           <div class="nums">
-            <div><span class="actual">${fmt(d.actual)}</span><span class="unit-txt">${m.unit}</span></div>
-            <div class="boq-line">of ${fmt(d.boq)} ${m.unit} BOQ</div>
+            <div><span class="actual">${fmt(d.actual)} of ${fmt(d.boq)}</span> <span class="unit-txt">${m.unit}</span></div>
+            <div class="boq-line">BOQ target</div>
             <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
           </div>
         </div>
