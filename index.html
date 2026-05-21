@@ -469,6 +469,221 @@
     color: var(--text-faint);
     font-style: italic;
   }
+
+  /* ============ TABS ============ */
+  .tabs {
+    display: flex;
+    background: var(--charcoal);
+    border-bottom: 1px solid var(--line);
+    flex-shrink: 0;
+    padding: 0 28px;
+    gap: 4px;
+  }
+  .tab {
+    padding: 14px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    user-select: none;
+  }
+  .tab:hover {
+    color: var(--text);
+    background: rgba(245, 200, 0, 0.04);
+  }
+  .tab.active {
+    color: var(--yellow);
+    border-bottom-color: var(--yellow);
+  }
+  .view { display: none; flex-direction: column; flex: 1; min-height: 0; }
+  .view.active { display: flex; }
+
+  /* ============ CLAIMS PLACEHOLDER ============ */
+  .claims-placeholder {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--text-faint);
+    padding: 60px;
+  }
+  .claims-placeholder .big {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 4px;
+    color: var(--yellow);
+    text-transform: uppercase;
+  }
+  .claims-placeholder .small {
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+  }
+
+  /* ============ JOB CARD — CLICKABLE ============ */
+  .job-card { cursor: pointer; }
+
+  /* ============ MODAL ============ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 40px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-panel {
+    background: var(--panel);
+    border: 1px solid var(--yellow);
+    width: 100%;
+    max-width: 1400px;
+    max-height: 92vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+  }
+  .modal-header {
+    background: var(--charcoal);
+    border-bottom: 3px solid var(--yellow);
+    padding: 22px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .modal-header .job-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--yellow);
+    letter-spacing: 3px;
+    font-weight: 700;
+  }
+  .modal-header .job-name {
+    font-weight: 900;
+    font-size: 30px;
+    letter-spacing: -0.5px;
+    margin-top: 6px;
+    line-height: 1.1;
+  }
+  .modal-header .job-client {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+  .modal-close {
+    background: var(--charcoal-3);
+    color: var(--text);
+    border: none;
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+  }
+  .modal-close:hover { background: var(--yellow); color: var(--charcoal); }
+  .modal-body {
+    padding: 28px 32px;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .modal-material-cell {
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .modal-material-cell .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .modal-material-cell .nums {
+    font-family: 'JetBrains Mono', monospace;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .modal-material-cell .nums .actual {
+    color: var(--yellow);
+    font-weight: 700;
+    font-size: 26px;
+  }
+  .modal-material-cell .nums .unit-txt {
+    color: var(--text-faint);
+    font-size: 14px;
+    margin-left: 4px;
+  }
+  .modal-material-cell .nums .boq-line {
+    color: var(--text-faint);
+    font-size: 12px;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .modal-material-cell .nums .week-line {
+    color: var(--text);
+    font-size: 11px;
+    margin-top: 6px;
+    letter-spacing: 1px;
+  }
+  .modal-material-cell .nums .week-line .wk-val {
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  .gauge.xl { width: 180px; height: 100px; }
+  .gauge.xl .pct-text { font-size: 36px; bottom: 6px; }
+  .modal-footer {
+    padding: 16px 32px;
+    background: var(--panel-2);
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .modal-footer .label {
+    color: var(--text-faint);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-right: 6px;
+  }
+  .modal-footer .val { color: var(--text); }
+  .modal-docs {
+    padding: 12px 32px;
+    background: rgba(245, 200, 0, 0.04);
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .modal-docs .doc-pill .count { font-size: 16px; }
 </style>
 </head>
 <body>
@@ -500,24 +715,59 @@
   </div>
 </header>
 
-<div class="summary-strip" id="summary-strip"></div>
+<div class="tabs" id="tabs">
+  <div class="tab active" data-view="quantity">Quantity</div>
+  <div class="tab" data-view="claims">Claims</div>
+</div>
 
-<main>
-  <div class="section-title">
-    <div class="bar"></div>
-    <h2>Active Jobs</h2>
-    <div class="count" id="job-count">— Jobs</div>
-  </div>
-  <div class="jobs-viewport" id="jobs-viewport">
-    <div class="jobs-scroller" id="jobs-scroller">
-      <div class="jobs-grid" id="jobs-grid"></div>
-      <div class="jobs-grid" id="jobs-grid-clone" aria-hidden="true"></div>
+<div class="view active" id="view-quantity">
+  <div class="summary-strip" id="summary-strip"></div>
+
+  <main>
+    <div class="section-title">
+      <div class="bar"></div>
+      <h2>Active Jobs</h2>
+      <div class="count" id="job-count">— Jobs</div>
     </div>
+    <div class="jobs-viewport" id="jobs-viewport">
+      <div class="jobs-scroller" id="jobs-scroller">
+        <div class="jobs-grid" id="jobs-grid"></div>
+        <div class="jobs-grid" id="jobs-grid-clone" aria-hidden="true"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="view" id="view-claims">
+  <div class="claims-placeholder">
+    <div class="big">Claims — Coming Soon</div>
+    <div class="small">Progress claims and variation tracking will live here.</div>
   </div>
-</main>
+</div>
 
 <div class="ticker">
   <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<!-- Job detail modal -->
+<div class="modal-overlay" id="job-modal">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <div class="left">
+        <div class="job-id" id="modal-job-id">JOB —</div>
+        <div class="job-name" id="modal-job-name">—</div>
+        <div class="job-client" id="modal-job-client">—</div>
+      </div>
+      <button class="modal-close" id="modal-close" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-docs" id="modal-docs"></div>
+    <div class="modal-footer">
+      <div><span class="label">Supervisor</span><span class="val" id="modal-supervisor">—</span></div>
+      <div><span class="label">Start</span><span class="val" id="modal-start">—</span></div>
+      <div><span class="label">Status</span><span class="val" id="modal-status">—</span></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -536,12 +786,15 @@
   // Build a half-circle gauge (top half of a circle).
   // Arc starts at left baseline, sweeps over the top, ends at right baseline.
   function gauge(percent, size) {
-    const isLg = size === 'lg';
-    const w = isLg ? 88 : 78;
-    const h = isLg ? 50 : 44;
-    const stroke = isLg ? 9 : 8;
+    const sizes = {
+      lg: { w: 88,  h: 50,  stroke: 9,  pad: 4 },
+      sm: { w: 78,  h: 44,  stroke: 8,  pad: 4 },
+      xl: { w: 180, h: 100, stroke: 14, pad: 6 },
+    };
+    const s = sizes[size] || sizes.sm;
+    const w = s.w, h = s.h, stroke = s.stroke;
     const cx = w / 2;
-    const cy = h - 4;                     // baseline
+    const cy = h - s.pad;                 // baseline
     const r  = (w / 2) - (stroke / 2) - 2;
     const pathD = `M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`;
     const arcLen = Math.PI * r;
@@ -605,7 +858,7 @@
 
   function renderJobs() {
     document.getElementById('job-count').textContent = `${JOBS.length} JOBS`;
-    const cardsHtml = JOBS.map(j => {
+    const cardsHtml = JOBS.map((j, idx) => {
       const statusClass = j.status === 'active' ? 'status-active' : j.status === 'idle' ? 'status-idle' : 'status-complete';
       const cardClass = j.status === 'idle' ? 'job-card idle' : 'job-card';
       const cells = MATERIALS.map(m => {
@@ -624,7 +877,7 @@
         `;
       }).join('');
       return `
-        <div class="${cardClass}">
+        <div class="${cardClass}" data-job-index="${idx}">
           <div class="job-header">
             <div class="left">
               <div class="job-id">JOB ${j.id}</div>
@@ -667,7 +920,9 @@
         requestAnimationFrame(step);
         return;
       }
-      if (!paused) {
+      const modalEl = document.getElementById('job-modal');
+      const modalIsOpen = modalEl && modalEl.classList.contains('show');
+      if (!paused && !modalIsOpen) {
         offset += SPEED;
         // Reset once we've scrolled past the first grid (plus the gap to clone)
         if (offset >= firstGridHeight + GAP) {
@@ -894,6 +1149,91 @@
 
   tickClock();
   setInterval(tickClock, 1000);
+
+  // ============ TABS ============
+  document.getElementById('tabs').addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab');
+    if (!tab) return;
+    const target = tab.dataset.view;
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('.view').forEach(v => {
+      v.classList.toggle('active', v.id === 'view-' + target);
+    });
+  });
+
+  // ============ JOB DETAIL MODAL ============
+  const modal = document.getElementById('job-modal');
+  const modalClose = document.getElementById('modal-close');
+  let modalOpen = false;
+
+  function openJobModal(idx) {
+    const j = JOBS[idx];
+    if (!j) return;
+    document.getElementById('modal-job-id').textContent = 'JOB ' + j.id;
+    document.getElementById('modal-job-name').textContent = j.name;
+    document.getElementById('modal-job-client').textContent = j.client;
+    document.getElementById('modal-supervisor').textContent = j.supervisor || '—';
+    document.getElementById('modal-start').textContent = j.startDate || '—';
+    document.getElementById('modal-status').textContent = (j.status || '').toUpperCase();
+
+    // Render xl material cells
+    const cells = MATERIALS.map(m => {
+      const d = j.materials[m.key];
+      const p = pctClamped(d.actual, d.boq);
+      const liveDot = d.live ? '<span class="live-dot" title="Live from Firebase"></span>' : '';
+      return `
+        <div class="modal-material-cell">
+          <div class="name">${m.label}${liveDot}</div>
+          ${gauge(p, 'xl')}
+          <div class="nums">
+            <div><span class="actual">${fmt(d.actual)}</span><span class="unit-txt">${m.unit}</span></div>
+            <div class="boq-line">of ${fmt(d.boq)} ${m.unit} BOQ</div>
+            <div class="week-line">This week: <span class="wk-val">${fmt(d.week)}</span> ${m.unit}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    document.getElementById('modal-body').innerHTML = cells;
+
+    // Docs row
+    const docs = j.documents || {};
+    const keys = Object.keys(docs).filter(k => docs[k] > 0);
+    const docsEl = document.getElementById('modal-docs');
+    if (keys.length === 0) {
+      docsEl.innerHTML = '<div class="doc-pill empty"><span class="label">No docs filed yet</span></div>';
+    } else {
+      docsEl.innerHTML = keys.map(k => `
+        <div class="doc-pill">
+          <span class="count">${docs[k]}</span>
+          <span class="label">${DOC_LABELS[k] || k}</span>
+        </div>
+      `).join('');
+    }
+
+    modal.classList.add('show');
+    modalOpen = true;
+  }
+
+  function closeJobModal() {
+    modal.classList.remove('show');
+    modalOpen = false;
+  }
+
+  // Click anywhere on a job card to open the modal
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.job-card');
+    if (!card) return;
+    const idx = parseInt(card.dataset.jobIndex, 10);
+    if (!Number.isNaN(idx)) openJobModal(idx);
+  });
+
+  modalClose.addEventListener('click', closeJobModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeJobModal();   // click backdrop to close
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOpen) closeJobModal();
+  });
 
   // ============ PWA / INSTALL ============
   // Register the service worker for offline caching.
