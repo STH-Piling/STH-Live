@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T13:02:59+10:00",
+  "lastUpdated": "2026-05-22T13:08:34+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,9 +74,9 @@
         }
       },
       "documents": {
+        "schedules": 1,
         "dockets": 71,
-        "pile_logs": 26,
-        "schedules": 1
+        "pile_logs": 26
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
@@ -127,8 +127,8 @@
         }
       },
       "documents": {
-        "pile_logs": 1,
-        "other": 1
+        "other": 1,
+        "pile_logs": 1
       },
       "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
       "folder": "2 - Napier St Fitzroy",
@@ -329,8 +329,8 @@
         }
       },
       "documents": {
-        "dockets": 4,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 4
       },
       "folder": "13 - St David Fitzroy",
       "drop_subfolder": "St David Fitzroy"
@@ -376,8 +376,8 @@
         }
       },
       "documents": {
-        "dockets": 20,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 20
       },
       "folder": "14 - Scott Glen Iris",
       "drop_subfolder": "Scott Glen Iris",
@@ -474,8 +474,8 @@
         }
       },
       "documents": {
-        "dockets": 14,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 14
       },
       "folder": "16 - Lower Heidelberg Ivanhoe",
       "drop_subfolder": "Lower Heidelberg Ivanhoe",
