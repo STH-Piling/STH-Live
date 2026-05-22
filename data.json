@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T13:20:38+10:00",
+  "lastUpdated": "2026-05-22T14:00:33+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,9 +74,9 @@
         }
       },
       "documents": {
-        "dockets": 71,
         "schedules": 1,
-        "pile_logs": 26
+        "pile_logs": 26,
+        "dockets": 71
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
@@ -299,7 +299,7 @@
       "materials": {
         "labour": {
           "actual": 7,
-          "boq": 0,
+          "boq": 5,
           "week": 0
         },
         "soil": {
@@ -329,11 +329,16 @@
         }
       },
       "documents": {
-        "dockets": 4,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 4
       },
       "folder": "13 - St David Fitzroy",
-      "drop_subfolder": "St David Fitzroy"
+      "drop_subfolder": "St David Fitzroy",
+      "claims": {
+        "boqPrice": 126178,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -346,7 +351,7 @@
       "materials": {
         "labour": {
           "actual": 1,
-          "boq": 0,
+          "boq": 8,
           "week": 0
         },
         "soil": {
@@ -376,8 +381,8 @@
         }
       },
       "documents": {
-        "dockets": 20,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 20
       },
       "folder": "14 - Scott Glen Iris",
       "drop_subfolder": "Scott Glen Iris",
@@ -444,7 +449,7 @@
       "materials": {
         "labour": {
           "actual": 9,
-          "boq": 0,
+          "boq": 12,
           "week": 1
         },
         "soil": {
@@ -474,8 +479,8 @@
         }
       },
       "documents": {
-        "dockets": 14,
-        "schedules": 1
+        "schedules": 1,
+        "dockets": 14
       },
       "folder": "16 - Lower Heidelberg Ivanhoe",
       "drop_subfolder": "Lower Heidelberg Ivanhoe",
@@ -495,9 +500,9 @@
       "connecteam_id": "c7a874b4-9794-edb9-11cd-eabacc9eacea",
       "materials": {
         "labour": {
-          "actual": 3,
-          "boq": 0,
-          "week": 3
+          "actual": 4,
+          "boq": 3,
+          "week": 4
         },
         "soil": {
           "actual": 0,
@@ -529,7 +534,12 @@
         "schedules": 1
       },
       "folder": "17 - Hodgson Templestowe Lower",
-      "drop_subfolder": "Hodgson Templestowe Lower"
+      "drop_subfolder": "Hodgson Templestowe Lower",
+      "claims": {
+        "boqPrice": 178901,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -544,7 +554,7 @@
       "materials": {
         "labour": {
           "actual": 14,
-          "boq": 0,
+          "boq": 7,
           "week": 2
         },
         "soil": {
@@ -573,7 +583,15 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {
+        "schedules": 1,
+        "dockets": 18
+      },
+      "claims": {
+        "boqPrice": 759300,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
