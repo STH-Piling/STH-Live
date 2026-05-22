@@ -539,6 +539,175 @@
     border-bottom-color: var(--good);
   }
 
+  /* ============ CLAIMS GRID ============ */
+  .claims-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 16px;
+    padding-bottom: 24px;
+  }
+  .claims-totals-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--charcoal);
+    border: 1px solid var(--line);
+    margin-bottom: 18px;
+  }
+  .claims-totals-tile {
+    background: var(--panel);
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .claims-totals-tile .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-faint); text-transform: uppercase;
+  }
+  .claims-totals-tile .value {
+    font-weight: 900; font-size: 24px; line-height: 1.1;
+    color: var(--yellow); margin-top: 6px;
+  }
+  .claims-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .claims-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+  }
+  .claims-card .job-header {
+    padding: 14px 18px;
+    background: var(--charcoal);
+    border-bottom: 2px solid var(--yellow);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .claims-card .job-header .job-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--yellow);
+    letter-spacing: 2px; font-weight: 700;
+  }
+  .claims-card .job-header .job-name {
+    font-weight: 900; font-size: 17px;
+    line-height: 1.2; margin-top: 4px;
+  }
+  .claims-card .job-header .job-client {
+    font-size: 12px; color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .claims-body {
+    padding: 18px 18px 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .claims-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .claims-cell .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-faint); text-transform: uppercase;
+  }
+  .claims-cell .value {
+    font-weight: 900; font-size: 22px;
+    color: var(--yellow); letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .claims-cell .value.muted { color: var(--text); }
+  .claims-cell.variations-cell .value {
+    color: var(--yellow);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .claims-cell.variations-cell .value:hover {
+    text-decoration: underline;
+  }
+  .claims-cell.variations-cell .chev {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .claims-progress {
+    padding: 6px 18px 14px;
+  }
+  .claims-progress-bar {
+    height: 8px;
+    background: var(--charcoal-3);
+    position: relative;
+    overflow: hidden;
+  }
+  .claims-progress-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--good);
+    transition: width 0.6s ease-out;
+  }
+  .claims-progress-fill.warn { background: var(--warn); }
+  .claims-progress-fill.bad  { background: var(--bad); }
+  .claims-footer {
+    padding: 10px 18px;
+    background: var(--panel-2);
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .claims-footer .label { color: var(--text-faint); letter-spacing: 1px; text-transform: uppercase; font-size: 10px; }
+  .claims-footer .val { color: var(--text); margin-left: 6px; font-weight: 700; }
+
+  /* Variations modal table */
+  .var-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .var-table thead th {
+    background: var(--charcoal);
+    color: var(--text-faint);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+  }
+  .var-table tbody td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+  }
+  .var-table tbody tr:hover { background: var(--panel-2); }
+  .var-table .amount { text-align: right; color: var(--yellow); font-weight: 700; }
+  .var-table .status {
+    display: inline-block; padding: 2px 8px; font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .var-table .status.approved { background: rgba(74, 222, 128, 0.2); color: var(--good); }
+  .var-table .status.pending  { background: rgba(251, 191, 36, 0.2); color: var(--warn); }
+  .var-table .status.rejected { background: rgba(248, 113, 113, 0.2); color: var(--bad); }
+  .var-empty {
+    padding: 60px 30px;
+    text-align: center;
+    color: var(--text-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
   /* ============ CLAIMS PLACEHOLDER ============ */
   .claims-placeholder {
     flex: 1;
@@ -791,9 +960,35 @@
 </div>
 
 <div class="view" id="view-claims">
-  <div class="claims-placeholder">
-    <div class="big">Claims — Coming Soon</div>
-    <div class="small">Progress claims and variation tracking will live here.</div>
+  <main>
+    <div class="section-title">
+      <div class="bar"></div>
+      <h2>Claims</h2>
+      <div class="count" id="claims-count">— Jobs</div>
+    </div>
+    <div class="completed-viewport">
+      <div class="claims-totals-strip" id="claims-totals-strip"></div>
+      <div class="claims-grid" id="claims-grid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Variations breakdown modal -->
+<div class="modal-overlay" id="variations-modal">
+  <div class="modal-panel" style="max-width: 900px;">
+    <div class="modal-header">
+      <div class="left">
+        <div class="job-id" id="var-modal-job-id">JOB —</div>
+        <div class="job-name" id="var-modal-job-name">Variations</div>
+        <div class="job-client" id="var-modal-job-client">—</div>
+      </div>
+      <button class="modal-close" id="var-modal-close" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" id="var-modal-body" style="display:block; padding:0;"></div>
+    <div class="modal-footer">
+      <div><span class="label">Variation count</span><span class="val" id="var-modal-count">—</span></div>
+      <div><span class="label">Total</span><span class="val" id="var-modal-total">—</span></div>
+    </div>
   </div>
 </div>
 
@@ -1074,6 +1269,143 @@
     requestAnimationFrame(() => requestAnimationFrame(step));
   }
 
+  // ============ CLAIMS RENDERING ============
+  function fmtMoney(n) {
+    n = Number(n) || 0;
+    return '$' + n.toLocaleString('en-AU', { maximumFractionDigits: 0 });
+  }
+
+  function getClaimsData(j) {
+    const c = j.claims || {};
+    const boqPrice = Number(c.boqPrice) || 0;
+    const variations = Array.isArray(c.variations) ? c.variations : [];
+    const variationsTotal = variations.reduce((s, v) => s + (Number(v.amount) || 0), 0);
+    const claimed = Number(c.claimed) || 0;
+    const contractTotal = boqPrice + variationsTotal;
+    const pctClaimed = contractTotal > 0 ? (claimed / contractTotal) * 100 : 0;
+    const remaining = contractTotal - claimed;
+    return { boqPrice, variations, variationsTotal, claimed, contractTotal, pctClaimed, remaining };
+  }
+
+  function renderClaims() {
+    const grid = document.getElementById('claims-grid');
+    const stripEl = document.getElementById('claims-totals-strip');
+    const countEl = document.getElementById('claims-count');
+    if (!grid || !stripEl) return;
+
+    // Show all jobs (active + completed) so completed jobs can still have final claim tracking
+    const jobs = JOBS;
+    countEl.textContent = `${jobs.length} JOBS`;
+
+    // Totals across all jobs
+    let totBoq = 0, totVar = 0, totClaimed = 0;
+    jobs.forEach(j => {
+      const c = getClaimsData(j);
+      totBoq += c.boqPrice;
+      totVar += c.variationsTotal;
+      totClaimed += c.claimed;
+    });
+    const totContract = totBoq + totVar;
+    const totRemaining = totContract - totClaimed;
+    const totPct = totContract > 0 ? (totClaimed / totContract) * 100 : 0;
+
+    stripEl.innerHTML = `
+      <div class="claims-totals-tile"><div class="label">Total BOQ</div><div class="value">${fmtMoney(totBoq)}</div></div>
+      <div class="claims-totals-tile"><div class="label">Variations</div><div class="value">${fmtMoney(totVar)}</div></div>
+      <div class="claims-totals-tile"><div class="label">Contract Total</div><div class="value">${fmtMoney(totContract)}</div></div>
+      <div class="claims-totals-tile"><div class="label">Claimed</div><div class="value">${fmtMoney(totClaimed)}</div></div>
+      <div class="claims-totals-tile"><div class="label">% Claimed</div><div class="value">${Math.round(totPct)}%</div></div>
+    `;
+
+    if (jobs.length === 0) {
+      grid.innerHTML = '<div style="padding:40px;color:var(--text-dim);text-align:center;">No jobs yet.</div>';
+      return;
+    }
+
+    grid.innerHTML = jobs.map((j, idx) => {
+      const c = getClaimsData(j);
+      const status = effectiveStatus(j);
+      const statusClass = status === 'active' ? 'status-active' : status === 'idle' ? 'status-idle' : 'status-complete';
+      const pctClass = c.pctClaimed > 100 ? 'bad' : (c.pctClaimed > 90 ? 'warn' : 'good');
+      const fillWidth = Math.min(100, Math.max(0, c.pctClaimed));
+      return `
+        <div class="claims-card" data-job-name="${j.name}">
+          <div class="job-header">
+            <div class="left">
+              <div class="job-id">JOB ${j.id}</div>
+              <div class="job-name">${j.name}</div>
+              <div class="job-client">${j.client}</div>
+            </div>
+            <div class="status-badge ${statusClass}" data-job-name="${j.name}" title="Click to toggle complete/active">${status}</div>
+          </div>
+          <div class="claims-body">
+            <div class="claims-cell">
+              <div class="label">BOQ Price</div>
+              <div class="value muted">${fmtMoney(c.boqPrice)}</div>
+            </div>
+            <div class="claims-cell variations-cell" data-variations-job="${j.name}" title="Click for variation breakdown">
+              <div class="label">Variations (${c.variations.length})</div>
+              <div class="value">${fmtMoney(c.variationsTotal)}<span class="chev">▸</span></div>
+            </div>
+            <div class="claims-cell">
+              <div class="label">Claimed</div>
+              <div class="value muted">${fmtMoney(c.claimed)}</div>
+            </div>
+            <div class="claims-cell">
+              <div class="label">% Claimed</div>
+              <div class="value">${Math.round(c.pctClaimed)}%</div>
+            </div>
+          </div>
+          <div class="claims-progress">
+            <div class="claims-progress-bar">
+              <div class="claims-progress-fill ${pctClass}" style="width:${fillWidth}%"></div>
+            </div>
+          </div>
+          <div class="claims-footer">
+            <div><span class="label">Contract</span><span class="val">${fmtMoney(c.contractTotal)}</span></div>
+            <div><span class="label">Remaining</span><span class="val">${fmtMoney(c.remaining)}</span></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Variations modal
+  function openVariationsModal(jobName) {
+    const j = JOBS.find(x => x.name === jobName);
+    if (!j) return;
+    const c = getClaimsData(j);
+    document.getElementById('var-modal-job-id').textContent = 'JOB ' + j.id;
+    document.getElementById('var-modal-job-name').textContent = j.name + ' — Variations';
+    document.getElementById('var-modal-job-client').textContent = j.client || '';
+    document.getElementById('var-modal-count').textContent = c.variations.length;
+    document.getElementById('var-modal-total').textContent = fmtMoney(c.variationsTotal);
+
+    const body = document.getElementById('var-modal-body');
+    if (c.variations.length === 0) {
+      body.innerHTML = '<div class="var-empty">No variations recorded yet for this job.<br><br>Add entries to data.json under this job\\'s claims.variations array.</div>';
+    } else {
+      body.innerHTML = `
+        <table class="var-table">
+          <thead>
+            <tr><th>Description</th><th>Date</th><th>Status</th><th style="text-align:right;">Amount</th></tr>
+          </thead>
+          <tbody>
+            ${c.variations.map(v => `
+              <tr>
+                <td>${v.desc || v.description || '—'}</td>
+                <td>${v.date || '—'}</td>
+                <td><span class="status ${(v.status || '').toLowerCase()}">${v.status || '—'}</span></td>
+                <td class="amount">${fmtMoney(v.amount)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+    document.getElementById('variations-modal').classList.add('show');
+  }
+
   function renderTicker() {
     const items = [];
     JOBS.forEach(j => {
@@ -1113,6 +1445,7 @@
       LAST_UPDATED = payload.lastUpdated || null;
       renderSummary();
       renderJobs();
+      renderClaims();
       renderTicker();
 
       // Apply live overrides from Firebase (Option A + B integration)
@@ -1315,7 +1648,7 @@
     document.getElementById('modal-job-client').textContent = j.client;
     document.getElementById('modal-supervisor').textContent = j.supervisor || '—';
     document.getElementById('modal-start').textContent = j.startDate || '—';
-    document.getElementById('modal-status').textContent = (j.status || '').toUpperCase();
+    document.getElementById('modal-status').textContent = (effectiveStatus(j) || '').toUpperCase();
 
     // Render xl material cells
     const cells = MATERIALS.map(m => {
@@ -1422,9 +1755,9 @@
         updatedAt: serverTimestamp(),
       });
       console.log(`[status] ${jobName} → ${next}`);
-      // Optimistically update local state; the Firestore listener will reconcile.
       STATUS_OVERRIDES[jobName] = next;
       renderJobs();
+      renderClaims();
       renderTicker();
     } catch (err) {
       console.error('Status update failed:', err);
@@ -1451,14 +1784,13 @@
     }, 3000);
   }
 
-  // Click anywhere on a job card to open the modal (but not on the status badge)
+  // Master click handler — routes to badge, variations cell, or card modal
   document.addEventListener('click', (e) => {
     const badge = e.target.closest('.status-badge');
     if (badge && badge.dataset.jobName) {
       e.stopPropagation();
       const jobName = badge.dataset.jobName;
       if (armedBadge === badge) {
-        // Second click → commit
         if (armedTimeout) clearTimeout(armedTimeout);
         badge.classList.remove('confirming');
         armedBadge = null;
@@ -1468,14 +1800,43 @@
       }
       return;
     }
+    const varCell = e.target.closest('.variations-cell');
+    if (varCell && varCell.dataset.variationsJob) {
+      e.stopPropagation();
+      openVariationsModal(varCell.dataset.variationsJob);
+      return;
+    }
+    // Claims cards aren't clickable to open the quantity modal
+    if (e.target.closest('.claims-card')) return;
     const card = e.target.closest('.job-card');
     if (!card) return;
     const idx = parseInt(card.dataset.jobIndex, 10);
     if (!Number.isNaN(idx)) openJobModal(idx);
   });
 
+  modalClose.addEventListener('click', closeJobModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeJobModal();
+  });
+
+  // Variations modal close handlers
+  document.getElementById('var-modal-close').addEventListener('click', () => {
+    document.getElementById('variations-modal').classList.remove('show');
+  });
+  document.getElementById('variations-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'variations-modal') {
+      document.getElementById('variations-modal').classList.remove('show');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (modalOpen) closeJobModal();
+      document.getElementById('variations-modal').classList.remove('show');
+    }
+  });
+
   // ============ LIVE STATUS OVERRIDES FROM FIRESTORE ============
-  // Subscribe to job_status_overrides collection; any change re-renders cards.
   whenFirebaseReady().then(fb => {
     const { db, collection, onSnapshot } = fb;
     onSnapshot(collection(db, 'job_status_overrides'), (snap) => {
@@ -1486,6 +1847,7 @@
       });
       STATUS_OVERRIDES = next;
       renderJobs();
+      renderClaims();
       renderTicker();
     });
   }).catch(err => console.warn('Status override listener init failed:', err));
