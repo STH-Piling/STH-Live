@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T11:36:43+10:00",
+  "lastUpdated": "2026-05-22T11:51:13+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,11 +74,13 @@
         }
       },
       "documents": {
+        "dockets": 71,
         "schedules": 1,
-        "pile_logs": 26,
-        "dockets": 71
+        "pile_logs": 26
       },
-      "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861"
+      "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
+      "folder": "1 - Pakenham",
+      "drop_subfolder": "Pakenham"
     },
     {
       "id": "TBD",
@@ -123,7 +125,9 @@
         "pile_logs": 1,
         "other": 1
       },
-      "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94"
+      "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
+      "folder": "2 - Napier St Fitzroy",
+      "drop_subfolder": "Napier"
     },
     {
       "id": "TBD",
@@ -167,7 +171,9 @@
       "documents": {
         "other": 1
       },
-      "connecteam_id": "1b3ba0a6-f7f1-3f43-325f-1ca22af643b4"
+      "connecteam_id": "1b3ba0a6-f7f1-3f43-325f-1ca22af643b4",
+      "folder": "3 - Spotswood",
+      "drop_subfolder": "Spotswood"
     },
     {
       "id": "TBD",
@@ -209,7 +215,9 @@
         }
       },
       "documents": {},
-      "connecteam_id": "e81c00ba-b626-8c53-8113-0e3aad3fbe43"
+      "connecteam_id": "e81c00ba-b626-8c53-8113-0e3aad3fbe43",
+      "folder": "4 - Brunswick",
+      "drop_subfolder": "Brunswick"
     },
     {
       "id": "TBD",
@@ -251,7 +259,9 @@
         }
       },
       "documents": {},
-      "connecteam_id": "d132faf8-c86c-44fa-d886-d2fa1eb8d8dd"
+      "connecteam_id": "d132faf8-c86c-44fa-d886-d2fa1eb8d8dd",
+      "folder": "5 - Albert Park",
+      "drop_subfolder": "Albert Park"
     },
     {
       "id": "TBD",
