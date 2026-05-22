@@ -22,7 +22,8 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
   import {
-    getFirestore, collection, doc, getDoc, getDocs, query, where, onSnapshot
+    getFirestore, collection, doc, getDoc, getDocs, query, where, onSnapshot,
+    setDoc, serverTimestamp
   } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   const firebaseConfig = {
@@ -37,7 +38,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  window.sthLive = { db, collection, doc, getDoc, getDocs, query, where, onSnapshot, ready: true };
+  window.sthLive = { db, collection, doc, getDoc, getDocs, query, where, onSnapshot, setDoc, serverTimestamp, ready: true };
   window.dispatchEvent(new CustomEvent('firebase-ready'));
 </script>
 <style>
@@ -327,6 +328,21 @@
     font-size: 10px; font-weight: 700;
     letter-spacing: 2px; padding: 4px 10px;
     text-transform: uppercase; flex-shrink: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: filter 0.15s, transform 0.15s;
+  }
+  .status-badge:hover { filter: brightness(1.15); }
+  .status-badge:active { transform: scale(0.97); }
+  .status-badge.confirming {
+    background: var(--bad) !important;
+    color: white !important;
+    border: 1px solid var(--bad) !important;
+    animation: confirmPulse 0.6s ease-in-out infinite;
+  }
+  @keyframes confirmPulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
   }
   .status-active { background: var(--yellow); color: var(--charcoal); }
   .status-idle   { background: var(--charcoal-3); color: var(--text-dim); }
@@ -789,6 +805,11 @@
   let MATERIALS = [];
   let JOBS = [];
   let LAST_UPDATED = null;
+  let STATUS_OVERRIDES = {};   // { "Job Name": "complete"|"active" } — sourced from Firebase
+
+  function effectiveStatus(j) {
+    return STATUS_OVERRIDES[j.name] || j.status;
+  }
 
   function fmt(n) { return n.toLocaleString('en-AU', { maximumFractionDigits: 0 }); }
   function pctClamped(a, b) { return b > 0 ? Math.min(100, (a / b) * 100) : 0; }
@@ -913,8 +934,9 @@
   function renderJobs() {
     document.getElementById('job-count').textContent = `${JOBS.length} JOBS`;
     const cardsHtml = JOBS.map((j, idx) => {
-      const statusClass = j.status === 'active' ? 'status-active' : j.status === 'idle' ? 'status-idle' : 'status-complete';
-      const cardClass = j.status === 'idle' ? 'job-card idle' : 'job-card';
+      const status = effectiveStatus(j);
+      const statusClass = status === 'active' ? 'status-active' : status === 'idle' ? 'status-idle' : 'status-complete';
+      const cardClass = status === 'idle' ? 'job-card idle' : 'job-card';
       const cells = MATERIALS.map(m => {
         const d = j.materials[m.key];
         const isPace = (m.key === 'pilesDrilled' || m.key === 'lmDrilled');
@@ -948,7 +970,7 @@
               <div class="job-name">${j.name}</div>
               <div class="job-client">${j.client}</div>
             </div>
-            <div class="status-badge ${statusClass}">${j.status}</div>
+            <div class="status-badge ${statusClass}" data-job-name="${j.name}" title="Click to toggle complete/active">${status}</div>
           </div>
           <div class="job-body">${cells}</div>
           ${docsRow(j)}
@@ -1332,13 +1354,89 @@
     modalOpen = false;
   }
 
-  // Click anywhere on a job card to open the modal
+  // ============ JOB STATUS BADGE (click to toggle) ============
+  // Two-step confirm: first click arms the badge (red pulse), second click within 3s commits.
+  let armedBadge = null;
+  let armedTimeout = null;
+
+  async function commitStatusChange(jobName) {
+    const fb = await whenFirebaseReady();
+    const { db, setDoc, serverTimestamp } = fb;
+    const currentEff = STATUS_OVERRIDES[jobName] || (JOBS.find(j => j.name === jobName) || {}).status || 'active';
+    const next = currentEff === 'complete' ? 'active' : 'complete';
+    try {
+      await setDoc(fb.doc(db, 'job_status_overrides', jobName), {
+        status: next,
+        updatedAt: serverTimestamp(),
+      });
+      console.log(`[status] ${jobName} → ${next}`);
+      // Optimistically update local state; the Firestore listener will reconcile.
+      STATUS_OVERRIDES[jobName] = next;
+      renderJobs();
+      renderTicker();
+    } catch (err) {
+      console.error('Status update failed:', err);
+      alert('Could not update status. Firebase rules may need updating to allow writes on job_status_overrides.');
+    }
+  }
+
+  function armBadge(badge) {
+    if (armedBadge && armedBadge !== badge) {
+      armedBadge.classList.remove('confirming');
+      armedBadge.textContent = armedBadge.dataset.origText || armedBadge.textContent;
+    }
+    badge.dataset.origText = badge.textContent;
+    badge.textContent = 'CLICK AGAIN';
+    badge.classList.add('confirming');
+    armedBadge = badge;
+    if (armedTimeout) clearTimeout(armedTimeout);
+    armedTimeout = setTimeout(() => {
+      if (armedBadge) {
+        armedBadge.classList.remove('confirming');
+        armedBadge.textContent = armedBadge.dataset.origText || armedBadge.textContent;
+        armedBadge = null;
+      }
+    }, 3000);
+  }
+
+  // Click anywhere on a job card to open the modal (but not on the status badge)
   document.addEventListener('click', (e) => {
+    const badge = e.target.closest('.status-badge');
+    if (badge && badge.dataset.jobName) {
+      e.stopPropagation();
+      const jobName = badge.dataset.jobName;
+      if (armedBadge === badge) {
+        // Second click → commit
+        if (armedTimeout) clearTimeout(armedTimeout);
+        badge.classList.remove('confirming');
+        armedBadge = null;
+        commitStatusChange(jobName);
+      } else {
+        armBadge(badge);
+      }
+      return;
+    }
     const card = e.target.closest('.job-card');
     if (!card) return;
     const idx = parseInt(card.dataset.jobIndex, 10);
     if (!Number.isNaN(idx)) openJobModal(idx);
   });
+
+  // ============ LIVE STATUS OVERRIDES FROM FIRESTORE ============
+  // Subscribe to job_status_overrides collection; any change re-renders cards.
+  whenFirebaseReady().then(fb => {
+    const { db, collection, onSnapshot } = fb;
+    onSnapshot(collection(db, 'job_status_overrides'), (snap) => {
+      const next = {};
+      snap.forEach(d => {
+        const data = d.data();
+        if (data && data.status) next[d.id] = data.status;
+      });
+      STATUS_OVERRIDES = next;
+      renderJobs();
+      renderTicker();
+    });
+  }).catch(err => console.warn('Status override listener init failed:', err));
 
   modalClose.addEventListener('click', closeJobModal);
   modal.addEventListener('click', (e) => {
