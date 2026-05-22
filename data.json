@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T11:55:06+10:00",
+  "lastUpdated": "2026-05-22T12:00:37+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,9 +74,9 @@
         }
       },
       "documents": {
+        "pile_logs": 26,
         "schedules": 1,
-        "dockets": 71,
-        "pile_logs": 26
+        "dockets": 71
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
@@ -122,8 +122,8 @@
         }
       },
       "documents": {
-        "other": 1,
-        "pile_logs": 1
+        "pile_logs": 1,
+        "other": 1
       },
       "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
       "folder": "2 - Napier St Fitzroy",
@@ -303,7 +303,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "13 - St David Fitzroy",
+      "drop_subfolder": "St David Fitzroy"
     },
     {
       "id": "TBD",
@@ -345,7 +347,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "14 - Scott Glen Iris",
+      "drop_subfolder": "Scott Glen Iris"
     },
     {
       "id": "TBD",
@@ -387,7 +391,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "15 - Beaconsfield St Kilda West",
+      "drop_subfolder": "Beaconsfield St Kilda West"
     },
     {
       "id": "TBD",
@@ -429,7 +435,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "16 - Lower Heidelberg Ivanhoe",
+      "drop_subfolder": "Lower Heidelberg Ivanhoe"
     },
     {
       "id": "TBD",
@@ -471,7 +479,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "17 - Hodgson Templestowe Lower",
+      "drop_subfolder": "Hodgson Templestowe Lower"
     },
     {
       "id": "TBD",
@@ -513,7 +523,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "18 - Jolimont East Melbourne",
+      "drop_subfolder": "Jolimont East Melbourne"
     },
     {
       "id": "TBD",
@@ -555,7 +567,9 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "folder": "19 - Chapel South Yarra",
+      "drop_subfolder": "Chapel South Yarra"
     }
   ]
 }
