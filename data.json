@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T12:06:21+10:00",
+  "lastUpdated": "2026-05-22T12:47:25+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,13 +74,18 @@
         }
       },
       "documents": {
-        "pile_logs": 26,
         "dockets": 71,
-        "schedules": 1
+        "schedules": 1,
+        "pile_logs": 26
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
-      "drop_subfolder": "Pakenham"
+      "drop_subfolder": "Pakenham",
+      "claims": {
+        "boqPrice": 791233,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -127,7 +132,12 @@
       },
       "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
       "folder": "2 - Napier St Fitzroy",
-      "drop_subfolder": "Napier"
+      "drop_subfolder": "Napier",
+      "claims": {
+        "boqPrice": 429995,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -173,7 +183,12 @@
       },
       "connecteam_id": "1b3ba0a6-f7f1-3f43-325f-1ca22af643b4",
       "folder": "3 - Spotswood",
-      "drop_subfolder": "Spotswood"
+      "drop_subfolder": "Spotswood",
+      "claims": {
+        "boqPrice": 217737,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -217,7 +232,12 @@
       "documents": {},
       "connecteam_id": "e81c00ba-b626-8c53-8113-0e3aad3fbe43",
       "folder": "4 - Brunswick",
-      "drop_subfolder": "Brunswick"
+      "drop_subfolder": "Brunswick",
+      "claims": {
+        "boqPrice": 277133,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -261,7 +281,12 @@
       "documents": {},
       "connecteam_id": "d132faf8-c86c-44fa-d886-d2fa1eb8d8dd",
       "folder": "5 - Albert Park",
-      "drop_subfolder": "Albert Park"
+      "drop_subfolder": "Albert Park",
+      "claims": {
+        "boqPrice": 275059,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -303,7 +328,10 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "dockets": 4,
+        "schedules": 1
+      },
       "folder": "13 - St David Fitzroy",
       "drop_subfolder": "St David Fitzroy"
     },
@@ -347,9 +375,17 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "dockets": 20,
+        "schedules": 1
+      },
       "folder": "14 - Scott Glen Iris",
-      "drop_subfolder": "Scott Glen Iris"
+      "drop_subfolder": "Scott Glen Iris",
+      "claims": {
+        "boqPrice": 725372,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -391,7 +427,9 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "schedules": 1
+      },
       "folder": "15 - Beaconsfield St Kilda West",
       "drop_subfolder": "Beaconsfield St Kilda West"
     },
@@ -435,9 +473,17 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "dockets": 14,
+        "schedules": 1
+      },
       "folder": "16 - Lower Heidelberg Ivanhoe",
-      "drop_subfolder": "Lower Heidelberg Ivanhoe"
+      "drop_subfolder": "Lower Heidelberg Ivanhoe",
+      "claims": {
+        "boqPrice": 1450653,
+        "variations": [],
+        "claimed": 0
+      }
     },
     {
       "id": "TBD",
@@ -469,7 +515,7 @@
           "week": 39
         },
         "lmDrilled": {
-          "actual": 0,
+          "actual": 169,
           "boq": 0,
           "week": 0
         },
@@ -479,7 +525,9 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "schedules": 1
+      },
       "folder": "17 - Hodgson Templestowe Lower",
       "drop_subfolder": "Hodgson Templestowe Lower"
     },
@@ -523,7 +571,10 @@
           "week": 0
         }
       },
-      "documents": {},
+      "documents": {
+        "dockets": 18,
+        "schedules": 1
+      },
       "folder": "18 - Jolimont East Melbourne",
       "drop_subfolder": "Jolimont East Melbourne"
     },
