@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T08:17:12+10:00",
+  "lastUpdated": "2026-05-22T11:36:43+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -74,10 +74,11 @@
         }
       },
       "documents": {
-        "dockets": 71,
+        "schedules": 1,
         "pile_logs": 26,
-        "schedules": 1
-      }
+        "dockets": 71
+      },
+      "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861"
     },
     {
       "id": "TBD",
@@ -121,7 +122,8 @@
       "documents": {
         "pile_logs": 1,
         "other": 1
-      }
+      },
+      "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94"
     },
     {
       "id": "TBD",
@@ -164,7 +166,8 @@
       },
       "documents": {
         "other": 1
-      }
+      },
+      "connecteam_id": "1b3ba0a6-f7f1-3f43-325f-1ca22af643b4"
     },
     {
       "id": "TBD",
@@ -205,7 +208,8 @@
           "week": 0
         }
       },
-      "documents": {}
+      "documents": {},
+      "connecteam_id": "e81c00ba-b626-8c53-8113-0e3aad3fbe43"
     },
     {
       "id": "TBD",
@@ -238,6 +242,301 @@
         "lmDrilled": {
           "actual": 0,
           "boq": 302,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {},
+      "connecteam_id": "d132faf8-c86c-44fa-d886-d2fa1eb8d8dd"
+    },
+    {
+      "id": "TBD",
+      "name": "33 St David St Fitzroy",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "23 Apr 2026",
+      "connecteam_id": "1637346b-3c9c-ef2d-1859-1539fb8fcd51",
+      "materials": {
+        "labour": {
+          "actual": 7,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "44 Scott Grove Glen Iris",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "12 May 2026",
+      "connecteam_id": "564fb4bb-3241-4129-8341-369e80750cd1",
+      "materials": {
+        "labour": {
+          "actual": 1,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "364 Beaconsfield Parade St Kilda West",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "18 May 2026",
+      "connecteam_id": "7b38c6e2-b690-ecca-0af1-d881025402be",
+      "materials": {
+        "labour": {
+          "actual": 3,
+          "boq": 0,
+          "week": 3
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "26 Lower Heidelberg Rd Ivanhoe",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "29 Apr 2026",
+      "connecteam_id": "880efd0a-0fb3-ddc1-ebcb-89dfe06d9bcc",
+      "materials": {
+        "labour": {
+          "actual": 9,
+          "boq": 0,
+          "week": 1
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "48 Hodgson St Templestowe Lower",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "17 May 2026",
+      "connecteam_id": "c7a874b4-9794-edb9-11cd-eabacc9eacea",
+      "materials": {
+        "labour": {
+          "actual": 3,
+          "boq": 0,
+          "week": 3
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 39,
+          "boq": 0,
+          "week": 39
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "124-126 Jolimont Rd East Melbourne",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "23 Apr 2026",
+      "connecteam_id": "eade3ed6-b328-1fbb-127e-c2fea0f37093",
+      "materials": {
+        "labour": {
+          "actual": 14,
+          "boq": 0,
+          "week": 2
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "430 Chapel St South Yarra",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "12 May 2026",
+      "connecteam_id": "f8d9bc34-a44a-de28-bbd8-aa453be2626a",
+      "materials": {
+        "labour": {
+          "actual": 5,
+          "boq": 0,
+          "week": 2
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
           "week": 0
         },
         "shotcrete": {
