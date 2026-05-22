@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T12:00:37+10:00",
+  "lastUpdated": "2026-05-22T12:06:21+10:00",
   "weekEnding": "2026-05-22",
   "materials": [
     {
@@ -75,8 +75,8 @@
       },
       "documents": {
         "pile_logs": 26,
-        "schedules": 1,
-        "dockets": 71
+        "dockets": 71,
+        "schedules": 1
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
@@ -122,8 +122,8 @@
         }
       },
       "documents": {
-        "pile_logs": 1,
-        "other": 1
+        "other": 1,
+        "pile_logs": 1
       },
       "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
       "folder": "2 - Napier St Fitzroy",
