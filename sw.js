@@ -1,7 +1,7 @@
 // STH Piling Dashboard — service worker
 // Caches the dashboard so it keeps running if the network drops.
 
-const CACHE_NAME = 'sth-dashboard-v1';
+const CACHE_NAME = 'sth-dashboard-v2';
 const ASSETS = [
   './',
   './index.html',

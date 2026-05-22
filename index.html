@@ -708,6 +708,64 @@
     font-size: 13px;
   }
 
+  /* Claims detail modal */
+  .cm-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .cm-summary-tile {
+    background: var(--panel);
+    padding: 18px 22px;
+  }
+  .cm-summary-tile .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--text-faint); text-transform: uppercase;
+  }
+  .cm-summary-tile .value {
+    font-weight: 900; font-size: 22px;
+    color: var(--yellow); margin-top: 6px;
+    letter-spacing: -0.5px;
+  }
+  .cm-summary-tile .value.muted { color: var(--text); }
+  .cm-summary-tile .value.good  { color: var(--good); }
+  .cm-progress-bar {
+    height: 6px;
+    background: var(--charcoal-3);
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  .cm-progress-fill {
+    height: 100%;
+    background: var(--good);
+    transition: width 0.6s ease-out;
+  }
+  .cm-progress-fill.warn { background: var(--warn); }
+  .cm-progress-fill.bad  { background: var(--bad); }
+
+  .cm-section {
+    padding: 0;
+  }
+  .cm-section-title {
+    padding: 16px 22px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel-2);
+    display: flex;
+    justify-content: space-between;
+  }
+  .cm-section-title .right {
+    color: var(--text);
+    font-weight: 700;
+  }
+
   /* ============ CLAIMS PLACEHOLDER ============ */
   .claims-placeholder {
     flex: 1;
@@ -973,22 +1031,18 @@
   </main>
 </div>
 
-<!-- Variations breakdown modal -->
-<div class="modal-overlay" id="variations-modal">
-  <div class="modal-panel" style="max-width: 900px;">
+<!-- Claims detail modal -->
+<div class="modal-overlay" id="claims-modal">
+  <div class="modal-panel" style="max-width: 1100px;">
     <div class="modal-header">
       <div class="left">
-        <div class="job-id" id="var-modal-job-id">JOB —</div>
-        <div class="job-name" id="var-modal-job-name">Variations</div>
-        <div class="job-client" id="var-modal-job-client">—</div>
+        <div class="job-id" id="cm-job-id">JOB —</div>
+        <div class="job-name" id="cm-job-name">—</div>
+        <div class="job-client" id="cm-job-client">—</div>
       </div>
-      <button class="modal-close" id="var-modal-close" type="button" aria-label="Close">×</button>
+      <button class="modal-close" id="cm-close" type="button" aria-label="Close">×</button>
     </div>
-    <div class="modal-body" id="var-modal-body" style="display:block; padding:0;"></div>
-    <div class="modal-footer">
-      <div><span class="label">Variation count</span><span class="val" id="var-modal-count">—</span></div>
-      <div><span class="label">Total</span><span class="val" id="var-modal-total">—</span></div>
-    </div>
+    <div class="modal-body" id="cm-body" style="display:block; padding:0;"></div>
   </div>
 </div>
 
@@ -1280,11 +1334,21 @@
     const boqPrice = Number(c.boqPrice) || 0;
     const variations = Array.isArray(c.variations) ? c.variations : [];
     const variationsTotal = variations.reduce((s, v) => s + (Number(v.amount) || 0), 0);
-    const claimed = Number(c.claimed) || 0;
+    // claimed can be a single number OR a list of { claim_no, date, amount, status } entries
+    let claimHistory = [];
+    let claimed = 0;
+    if (Array.isArray(c.claimed)) {
+      claimHistory = c.claimed;
+      claimed = claimHistory.reduce((s, x) => s + (Number(x.amount) || 0), 0);
+    } else {
+      claimed = Number(c.claimed) || 0;
+      // Optional: separate claim_history list alongside numeric claimed
+      if (Array.isArray(c.claim_history)) claimHistory = c.claim_history;
+    }
     const contractTotal = boqPrice + variationsTotal;
     const pctClaimed = contractTotal > 0 ? (claimed / contractTotal) * 100 : 0;
     const remaining = contractTotal - claimed;
-    return { boqPrice, variations, variationsTotal, claimed, contractTotal, pctClaimed, remaining };
+    return { boqPrice, variations, variationsTotal, claimed, claimHistory, contractTotal, pctClaimed, remaining };
   }
 
   function renderClaims() {
@@ -1370,23 +1434,40 @@
     }).join('');
   }
 
-  // Variations modal
-  function openVariationsModal(jobName) {
+  // Claims detail modal — full breakdown for one job
+  function openClaimsModal(jobName) {
     const j = JOBS.find(x => x.name === jobName);
     if (!j) return;
     const c = getClaimsData(j);
-    document.getElementById('var-modal-job-id').textContent = 'JOB ' + j.id;
-    document.getElementById('var-modal-job-name').textContent = j.name + ' — Variations';
-    document.getElementById('var-modal-job-client').textContent = j.client || '';
-    document.getElementById('var-modal-count').textContent = c.variations.length;
-    document.getElementById('var-modal-total').textContent = fmtMoney(c.variationsTotal);
 
-    const body = document.getElementById('var-modal-body');
-    if (c.variations.length === 0) {
-      body.innerHTML = '<div class="var-empty">No variations recorded yet for this job.<br><br>Add entries to data.json under this job&apos;s claims.variations array.</div>';
-    } else {
-      body.innerHTML = `
-        <table class="var-table">
+    document.getElementById('cm-job-id').textContent = 'JOB ' + j.id;
+    document.getElementById('cm-job-name').textContent = j.name;
+    document.getElementById('cm-job-client').textContent = j.client || '';
+
+    const pctCls = c.pctClaimed > 100 ? 'bad' : (c.pctClaimed > 90 ? 'warn' : 'good');
+    const pctWidth = Math.min(100, Math.max(0, c.pctClaimed));
+
+    const claimHistoryHtml = c.claimHistory.length === 0
+      ? `<div class="var-empty">No individual claims recorded yet.<br><br>Add entries to data.json under this job&apos;s claims.claimed array, or set claim_history to a list of { claim_no, date, amount, status }.</div>`
+      : `<table class="var-table">
+          <thead>
+            <tr><th style="width:60px;">#</th><th>Date</th><th>Status</th><th style="text-align:right;">Amount</th></tr>
+          </thead>
+          <tbody>
+            ${c.claimHistory.map((x, i) => `
+              <tr>
+                <td>${x.claim_no || (i + 1)}</td>
+                <td>${x.date || '—'}</td>
+                <td><span class="status ${(x.status || '').toLowerCase()}">${x.status || '—'}</span></td>
+                <td class="amount">${fmtMoney(x.amount)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>`;
+
+    const variationsHtml = c.variations.length === 0
+      ? `<div class="var-empty" style="padding:40px 30px;">No variations recorded.</div>`
+      : `<table class="var-table">
           <thead>
             <tr><th>Description</th><th>Date</th><th>Status</th><th style="text-align:right;">Amount</th></tr>
           </thead>
@@ -1400,10 +1481,54 @@
               </tr>
             `).join('')}
           </tbody>
-        </table>
-      `;
-    }
-    document.getElementById('variations-modal').classList.add('show');
+        </table>`;
+
+    document.getElementById('cm-body').innerHTML = `
+      <div class="cm-summary">
+        <div class="cm-summary-tile">
+          <div class="label">BOQ Price</div>
+          <div class="value muted">${fmtMoney(c.boqPrice)}</div>
+        </div>
+        <div class="cm-summary-tile">
+          <div class="label">Variations (${c.variations.length})</div>
+          <div class="value">${fmtMoney(c.variationsTotal)}</div>
+        </div>
+        <div class="cm-summary-tile">
+          <div class="label">Contract Total</div>
+          <div class="value">${fmtMoney(c.contractTotal)}</div>
+        </div>
+        <div class="cm-summary-tile">
+          <div class="label">Claimed</div>
+          <div class="value">${fmtMoney(c.claimed)}</div>
+        </div>
+        <div class="cm-summary-tile">
+          <div class="label">% Claimed</div>
+          <div class="value good">${Math.round(c.pctClaimed)}%</div>
+          <div class="cm-progress-bar"><div class="cm-progress-fill ${pctCls}" style="width:${pctWidth}%"></div></div>
+        </div>
+        <div class="cm-summary-tile">
+          <div class="label">Remaining</div>
+          <div class="value muted">${fmtMoney(c.remaining)}</div>
+        </div>
+      </div>
+
+      <div class="cm-section">
+        <div class="cm-section-title">
+          <span>Claim History</span>
+          <span class="right">${c.claimHistory.length} claim(s) &middot; ${fmtMoney(c.claimed)} total</span>
+        </div>
+        ${claimHistoryHtml}
+      </div>
+
+      <div class="cm-section">
+        <div class="cm-section-title">
+          <span>Variations</span>
+          <span class="right">${c.variations.length} item(s) &middot; ${fmtMoney(c.variationsTotal)} total</span>
+        </div>
+        ${variationsHtml}
+      </div>
+    `;
+    document.getElementById('claims-modal').classList.add('show');
   }
 
   function renderTicker() {
@@ -1803,11 +1928,15 @@
     const varCell = e.target.closest('.variations-cell');
     if (varCell && varCell.dataset.variationsJob) {
       e.stopPropagation();
-      openVariationsModal(varCell.dataset.variationsJob);
+      openClaimsModal(varCell.dataset.variationsJob);
       return;
     }
-    // Claims cards aren't clickable to open the quantity modal
-    if (e.target.closest('.claims-card')) return;
+    // Claims card click → open claims detail modal
+    const claimsCard = e.target.closest('.claims-card');
+    if (claimsCard && claimsCard.dataset.jobName) {
+      openClaimsModal(claimsCard.dataset.jobName);
+      return;
+    }
     const card = e.target.closest('.job-card');
     if (!card) return;
     const idx = parseInt(card.dataset.jobIndex, 10);
@@ -1819,20 +1948,20 @@
     if (e.target === modal) closeJobModal();
   });
 
-  // Variations modal close handlers
-  document.getElementById('var-modal-close').addEventListener('click', () => {
-    document.getElementById('variations-modal').classList.remove('show');
+  // Claims modal close handlers
+  document.getElementById('cm-close').addEventListener('click', () => {
+    document.getElementById('claims-modal').classList.remove('show');
   });
-  document.getElementById('variations-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'variations-modal') {
-      document.getElementById('variations-modal').classList.remove('show');
+  document.getElementById('claims-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'claims-modal') {
+      document.getElementById('claims-modal').classList.remove('show');
     }
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (modalOpen) closeJobModal();
-      document.getElementById('variations-modal').classList.remove('show');
+      document.getElementById('claims-modal').classList.remove('show');
     }
   });
 
