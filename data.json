@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-05-22T14:00:33+10:00",
-  "weekEnding": "2026-05-22",
+  "lastUpdated": "2026-06-03T11:12:13+10:00",
+  "weekEnding": "2026-06-03",
   "materials": [
     {
       "key": "labour",
@@ -43,9 +43,9 @@
       "startDate": "23 Apr 2026",
       "materials": {
         "labour": {
-          "actual": 22,
+          "actual": 28,
           "boq": 30,
-          "week": 5
+          "week": 2
         },
         "soil": {
           "actual": 0,
@@ -74,9 +74,9 @@
         }
       },
       "documents": {
-        "schedules": 1,
+        "dockets": 71,
         "pile_logs": 26,
-        "dockets": 71
+        "schedules": 1
       },
       "connecteam_id": "606a23e1-a857-9436-ff32-6fd6b44c4861",
       "folder": "1 - Pakenham",
@@ -96,7 +96,7 @@
       "startDate": "24 Apr 2026",
       "materials": {
         "labour": {
-          "actual": 21,
+          "actual": 31,
           "boq": 5,
           "week": 4
         },
@@ -106,9 +106,9 @@
           "week": 0
         },
         "concrete": {
-          "actual": 98,
+          "actual": 101,
           "boq": 60,
-          "week": 26
+          "week": 0
         },
         "pilesDrilled": {
           "actual": 42,
@@ -127,8 +127,8 @@
         }
       },
       "documents": {
-        "pile_logs": 1,
-        "other": 1
+        "other": 1,
+        "pile_logs": 1
       },
       "connecteam_id": "9e73dd47-1970-d55a-6068-78768107ec94",
       "folder": "2 - Napier St Fitzroy",
@@ -199,9 +199,9 @@
       "startDate": "06 May 2026",
       "materials": {
         "labour": {
-          "actual": 14,
+          "actual": 18,
           "boq": 14,
-          "week": 4
+          "week": 0
         },
         "soil": {
           "actual": 0,
@@ -209,14 +209,14 @@
           "week": 0
         },
         "concrete": {
-          "actual": 304,
+          "actual": 362,
           "boq": 364,
-          "week": 149
+          "week": 0
         },
         "pilesDrilled": {
-          "actual": 111,
+          "actual": 127,
           "boq": 96,
-          "week": 48
+          "week": 0
         },
         "lmDrilled": {
           "actual": 0,
@@ -329,8 +329,8 @@
         }
       },
       "documents": {
-        "schedules": 1,
-        "dockets": 4
+        "dockets": 4,
+        "schedules": 1
       },
       "folder": "13 - St David Fitzroy",
       "drop_subfolder": "St David Fitzroy",
@@ -350,106 +350,8 @@
       "connecteam_id": "564fb4bb-3241-4129-8341-369e80750cd1",
       "materials": {
         "labour": {
-          "actual": 1,
+          "actual": 2,
           "boq": 8,
-          "week": 0
-        },
-        "soil": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "concrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "pilesDrilled": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "lmDrilled": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "shotcrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        }
-      },
-      "documents": {
-        "schedules": 1,
-        "dockets": 20
-      },
-      "folder": "14 - Scott Glen Iris",
-      "drop_subfolder": "Scott Glen Iris",
-      "claims": {
-        "boqPrice": 725372,
-        "variations": [],
-        "claimed": 0
-      }
-    },
-    {
-      "id": "TBD",
-      "name": "364 Beaconsfield Parade St Kilda West",
-      "client": "TBC",
-      "status": "active",
-      "supervisor": "TBC",
-      "startDate": "18 May 2026",
-      "connecteam_id": "7b38c6e2-b690-ecca-0af1-d881025402be",
-      "materials": {
-        "labour": {
-          "actual": 3,
-          "boq": 0,
-          "week": 3
-        },
-        "soil": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "concrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "pilesDrilled": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "lmDrilled": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        },
-        "shotcrete": {
-          "actual": 0,
-          "boq": 0,
-          "week": 0
-        }
-      },
-      "documents": {
-        "schedules": 1
-      },
-      "folder": "15 - Beaconsfield St Kilda West",
-      "drop_subfolder": "Beaconsfield St Kilda West"
-    },
-    {
-      "id": "TBD",
-      "name": "26 Lower Heidelberg Rd Ivanhoe",
-      "client": "TBC",
-      "status": "active",
-      "supervisor": "TBC",
-      "startDate": "29 Apr 2026",
-      "connecteam_id": "880efd0a-0fb3-ddc1-ebcb-89dfe06d9bcc",
-      "materials": {
-        "labour": {
-          "actual": 9,
-          "boq": 12,
           "week": 1
         },
         "soil": {
@@ -479,8 +381,106 @@
         }
       },
       "documents": {
-        "schedules": 1,
-        "dockets": 14
+        "dockets": 20,
+        "schedules": 1
+      },
+      "folder": "14 - Scott Glen Iris",
+      "drop_subfolder": "Scott Glen Iris",
+      "claims": {
+        "boqPrice": 725372,
+        "variations": [],
+        "claimed": 0
+      }
+    },
+    {
+      "id": "TBD",
+      "name": "364 Beaconsfield Parade St Kilda West",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "18 May 2026",
+      "connecteam_id": "7b38c6e2-b690-ecca-0af1-d881025402be",
+      "materials": {
+        "labour": {
+          "actual": 13,
+          "boq": 0,
+          "week": 4
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 94,
+          "boq": 0,
+          "week": 88
+        },
+        "pilesDrilled": {
+          "actual": 15,
+          "boq": 0,
+          "week": 15
+        },
+        "lmDrilled": {
+          "actual": 134,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {
+        "schedules": 1
+      },
+      "folder": "15 - Beaconsfield St Kilda West",
+      "drop_subfolder": "Beaconsfield St Kilda West"
+    },
+    {
+      "id": "TBD",
+      "name": "26 Lower Heidelberg Rd Ivanhoe",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "29 Apr 2026",
+      "connecteam_id": "880efd0a-0fb3-ddc1-ebcb-89dfe06d9bcc",
+      "materials": {
+        "labour": {
+          "actual": 10,
+          "boq": 12,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {
+        "dockets": 14,
+        "schedules": 1
       },
       "folder": "16 - Lower Heidelberg Ivanhoe",
       "drop_subfolder": "Lower Heidelberg Ivanhoe",
@@ -500,9 +500,9 @@
       "connecteam_id": "c7a874b4-9794-edb9-11cd-eabacc9eacea",
       "materials": {
         "labour": {
-          "actual": 4,
+          "actual": 8,
           "boq": 3,
-          "week": 4
+          "week": 0
         },
         "soil": {
           "actual": 0,
@@ -510,17 +510,17 @@
           "week": 0
         },
         "concrete": {
-          "actual": 0,
+          "actual": 39,
           "boq": 0,
           "week": 0
         },
         "pilesDrilled": {
-          "actual": 39,
+          "actual": 55,
           "boq": 0,
-          "week": 39
+          "week": 0
         },
         "lmDrilled": {
-          "actual": 169,
+          "actual": 238,
           "boq": 0,
           "week": 0
         },
@@ -553,9 +553,9 @@
       "drop_subfolder": "Jolimont East Melbourne",
       "materials": {
         "labour": {
-          "actual": 14,
+          "actual": 17,
           "boq": 7,
-          "week": 2
+          "week": 1
         },
         "soil": {
           "actual": 0,
@@ -584,8 +584,8 @@
         }
       },
       "documents": {
-        "schedules": 1,
-        "dockets": 18
+        "dockets": 18,
+        "schedules": 1
       },
       "claims": {
         "boqPrice": 759300,
@@ -607,7 +607,7 @@
         "labour": {
           "actual": 5,
           "boq": 0,
-          "week": 2
+          "week": 0
         },
         "soil": {
           "actual": 0,
@@ -623,6 +623,138 @@
           "actual": 0,
           "boq": 0,
           "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "29 Bolton Ave Hampton",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "25 May 2026",
+      "connecteam_id": "b773b18f-1390-794b-1208-5b4624df55d0",
+      "folder": "20 - Bolton Hampton",
+      "drop_subfolder": "Bolton Hampton",
+      "materials": {
+        "labour": {
+          "actual": 1,
+          "boq": 0,
+          "week": 0
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "112 Kooyong Rd Armadale",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "25 May 2026",
+      "connecteam_id": "ba486572-0b4a-a7ee-2f4b-8d641456cc2e",
+      "folder": "21 - Kooyong Armadale",
+      "drop_subfolder": "Kooyong Armadale",
+      "materials": {
+        "labour": {
+          "actual": 4,
+          "boq": 0,
+          "week": 1
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "pilesDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "lmDrilled": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "shotcrete": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        }
+      },
+      "documents": {}
+    },
+    {
+      "id": "TBD",
+      "name": "5 Brindabella Point Safety Beach",
+      "client": "TBC",
+      "status": "active",
+      "supervisor": "TBC",
+      "startDate": "21 May 2026",
+      "connecteam_id": "e159c88b-f868-1f16-fd8a-aaabccf4f6ea",
+      "folder": "22 - Beach",
+      "drop_subfolder": "Beach",
+      "materials": {
+        "labour": {
+          "actual": 10,
+          "boq": 0,
+          "week": 4
+        },
+        "soil": {
+          "actual": 0,
+          "boq": 0,
+          "week": 0
+        },
+        "concrete": {
+          "actual": 40,
+          "boq": 0,
+          "week": 40
+        },
+        "pilesDrilled": {
+          "actual": 25,
+          "boq": 0,
+          "week": 25
         },
         "lmDrilled": {
           "actual": 0,
